@@ -1,4 +1,4 @@
-package edu.iit.cs445.s2016.lamp;
+package edu.iit.cs445.s2016.delectable;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -7,18 +7,27 @@ import javax.annotation.PostConstruct;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 
-@Path("/lamps")
-public class REST_controller {
+@Path("/report")
+public class REST_report_controller {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAllLamps() {
+    public Response getAllOrders() {
         // calls the "Get All Lamps" use case
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String s = gson.toJson("Test");
         return Response.status(Response.Status.OK).entity(s).build();
     }
-
+    
+    @Path("{rid}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getSpecificOrder(@PathParam("rid") int lid) {
+        // calls the "Get All Lamps" use case
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String s = gson.toJson("TestMID");
+        return Response.status(Response.Status.OK).entity(s).build();
+    }
 
     @PostConstruct
     public void postConstruct() {
