@@ -34,7 +34,7 @@ public class MenuItem {
     	return this.minimumOrder;
     }
     
-    public void minimumOrder(int newMinimum){
+    public void setMinimumOrder(int newMinimum){
     	this.minimumOrder = newMinimum;
     }
 
@@ -42,10 +42,10 @@ public class MenuItem {
     	return this.categories;
     }
     
-    public void addCategorie(String categorie){
-    	if(!this.categories.contains(categorie))
+    public void addCategorie(String category){
+    	if(!this.categories.contains(category))
     	{
-    		this.categories.add(categorie);
+    		this.categories.add(category);
     	}
     }
     
