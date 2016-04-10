@@ -3,6 +3,7 @@ package edu.iit.cs445.s2016.delectable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 public class MenuManager implements BoundaryMenuInterface {
 
@@ -14,25 +15,27 @@ public class MenuManager implements BoundaryMenuInterface {
 	}
 
 	@Override
-	public MenuItem createMenuItem(String name, float pricePerPerson,int minimumOrder, List<String> categories) {
-		MenuItem item = new MenuItem();
+	public MenuItem createMenuItem(MenuItem entity) {
+		Menu.add(entity);
 		
-		item.setName(name);
-		item.setPricePerPerson(pricePerPerson);
-		item.setMinimumOrder(minimumOrder);
-		
-		for(String category : categories){
-			item.addCategorie(category);
-		}
-		
-		
-		return item;
+		return entity;
 	}
 
 	@Override
 	public MenuItem getMenuItemDetail(int mid) {
 		return findById(mid);
 	}
+	
+	@Override
+	public void updateMenuItemDetail(MenuItem entity) {
+        ListIterator<MenuItem> mi = Menu.listIterator();
+        while(mi.hasNext()) {
+        	MenuItem l = mi.next();
+            if(l.matchesId(entity.getID())) {
+            	l.setPricePerPerson(entity.pricePerPerson());
+            };
+        }
+    }
 
     private MenuItem findById(int mid) {
         Iterator<MenuItem> mi = Menu.listIterator();
@@ -42,5 +45,6 @@ public class MenuManager implements BoundaryMenuInterface {
         }
         return(new NullMenuItem());
     }
+
     
 }

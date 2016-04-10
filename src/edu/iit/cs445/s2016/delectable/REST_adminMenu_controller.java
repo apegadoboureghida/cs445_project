@@ -1,5 +1,6 @@
 package edu.iit.cs445.s2016.delectable;
 
+import com.google.gson.ExclusionStrategy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -8,25 +9,47 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 
 @Path("/admin/menu")
-public class REST_adminMenu_controller {
+public class REST_adminMenu_controller extends REST_AbstractController{
 
-    @GET
+    @PUT
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAllOrders() {
-        // calls the "Get All Lamps" use case
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String s = gson.toJson("Test");
-        return Response.status(Response.Status.OK).entity(s).build();
+    public Response createMenuItem(@Context UriInfo uriInfo, String json) {
+        int id;
+        ExclusionStrategy strategy = new CreateStrategy();
+        
+        Gson gson = new Gson();
+        // calls the "Create Lamp" use case
+        MenuItem il = gson.fromJson(json, MenuItem.class);
+        if(il == null){
+        	return Response.status(Response.Status.BAD_REQUEST).build();
+        }
+        MenuItem l = super.bi.createMenuItem(il);
+
+        id = l.getID();
+        
+        gson = new GsonBuilder()
+         	     .setExclusionStrategies(strategy)
+          	     .create();
+        
+        String s = gson.toJson(l);
+        // Build the URI for the "Location:" header
+        UriBuilder builder = uriInfo.getAbsolutePathBuilder();
+        builder.path(Integer.toString(id));
+
+        // The response includes header and body data
+        return Response.created(builder.build()).entity(s).build();
     }
     
     @Path("{mid}")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     public Response getSpecificOrder(@PathParam("mid") int lid, String json) {
-        // calls the "Get All Lamps" use case
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String s = gson.toJson("TestMID");
-        return Response.status(Response.Status.OK).entity(s).build();
+        // update existing MenuItem
+        Gson gson = new Gson();
+        MenuItem il = gson.fromJson(json, MenuItem.class);
+        super.bi.updateMenuItemDetail(il);
+
+        return Response.ok().build();
     }
 
     @PostConstruct
