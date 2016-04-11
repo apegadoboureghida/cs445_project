@@ -1,4 +1,4 @@
-package edu.iit.cs445.s2016.delectable;
+package edu.iit.cs445.s2016.delectable.menu;
 
 public class Category {
 	private String name;

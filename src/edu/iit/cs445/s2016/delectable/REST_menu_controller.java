@@ -4,6 +4,9 @@ import com.google.gson.ExclusionStrategy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import edu.iit.cs445.s2016.delectable.GsonStrategies.ListStrategy;
+import edu.iit.cs445.s2016.delectable.menu.MenuItem;
+
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 

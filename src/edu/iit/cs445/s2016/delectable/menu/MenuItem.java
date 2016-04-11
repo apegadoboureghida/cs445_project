@@ -1,4 +1,4 @@
-package edu.iit.cs445.s2016.delectable;
+package edu.iit.cs445.s2016.delectable.menu;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -6,6 +6,8 @@ import java.util.List;
 
 
 import com.google.gson.annotations.SerializedName;
+
+import edu.iit.cs445.s2016.delectable.UniqueIdGenerator;
 
 public class MenuItem {
 	
