@@ -7,7 +7,7 @@ public class CreateStrategy implements ExclusionStrategy{
 
 	@Override
 	public boolean shouldSkipField(FieldAttributes arg0) {
-		return !arg0.getName().equals("id");
+		return !arg0.getName().equals("id") && !arg0.getName().equals("cancelURL");
 	}
 	
 	@Override

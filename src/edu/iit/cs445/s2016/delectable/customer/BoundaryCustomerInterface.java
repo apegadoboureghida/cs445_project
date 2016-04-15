@@ -1,10 +1,13 @@
 package edu.iit.cs445.s2016.delectable.customer;
 
-import java.util.List;
+import java.util.Collection;
+
 
 public interface BoundaryCustomerInterface {
-    List<Customer> getAllCustomers();
-    List<Customer> getAllCustomersByKey(String queryString);
-    Customer getMenuItemDetail(int mid);
+    
+	Customer createCustomer(GenericCustomer customerInterface);
+	Collection<Customer> getAllCustomers();
+	Collection<Customer> getAllCustomersByKey(String queryString);
+    Customer getCustomerDetail(int cid);
     void updateCustomerOrders();
 }

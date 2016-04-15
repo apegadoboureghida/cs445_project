@@ -1,32 +1,77 @@
 package edu.iit.cs445.s2016.delectable;
 
+import com.google.gson.ExclusionStrategy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import edu.iit.cs445.s2016.delectable.GsonStrategies.CreateStrategy;
+import edu.iit.cs445.s2016.delectable.GsonStrategies.ListStrategy;
+import edu.iit.cs445.s2016.delectable.customer.Customer;
+import edu.iit.cs445.s2016.delectable.menu.MenuItem;
+import edu.iit.cs445.s2016.delectable.order.Order;
+import edu.iit.cs445.s2016.delectable.order.OrderItem;
 
 import javax.annotation.PostConstruct;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 
 @Path("/order")
-public class REST_order_controller {
+public class REST_order_controller extends REST_AbstractController{
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllOrders() {
         // calls the "Get All Lamps" use case
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String s = gson.toJson("Test");
+    	ExclusionStrategy strategy = new ListStrategy();
+    	
+        Gson gson = new GsonBuilder()
+         	     .setExclusionStrategies(strategy)
+         	    .setDateFormat("yyyyMMdd")
+          	     .create();
+        String s = gson.toJson(super.boi.getAllOrders());
         return Response.status(Response.Status.OK).entity(s).build();
     }
 
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
-    public Response makeOrder(@Context UriInfo uriInfo) {
-        Gson gson = new Gson();
-        String s = gson.toJson("test");
+    public Response makeOrder(@Context UriInfo uriInfo, String json) {
+        int id;
+        ExclusionStrategy strategy = new CreateStrategy();
+        
+        Gson gson =  new GsonBuilder().setDateFormat("yyyyMMdd").setPrettyPrinting().create();
+        // calls the "Create Lamp" use case
+        Order il = gson.fromJson(json, Order.class);
+        if(il == null){
+        	return Response.status(Response.Status.BAD_REQUEST).build();
+        }
+
+        
+        double amount = 0;
+        for(OrderItem item:il.orderDetail()){
+        	MenuItem temp = super.bi.getMenuItemDetail(item.getID());
+        	if(temp == null || temp.minimumOrder()> item.count()){
+        		return Response.status(Response.Status.BAD_REQUEST).build();
+        	}
+        	item.setName(temp.name());
+        	amount += temp.pricePerPerson() * item.count();
+        }
+        il.setAmount(amount);
+        
+        
+        Order l = super.boi.createOrder(il);
+        super.bci.createCustomer(il.customer());
+        
+        id = l.getID();
+        
+        gson = new GsonBuilder()
+         	     .setExclusionStrategies(strategy)
+         	    .setDateFormat("yyyyMMdd")
+          	     .create();
+        
+        String s = gson.toJson(l);
         // Build the URI for the "Location:" header
         UriBuilder builder = uriInfo.getAbsolutePathBuilder();
-        builder.path(Integer.toString(1));
+        builder.path(Integer.toString(id));
 
         // The response includes header and body data
         return Response.created(builder.build()).entity(s).build();
@@ -35,21 +80,37 @@ public class REST_order_controller {
     @Path("{oid}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getSpecificOrder(@PathParam("oid") int lid) {
+    public Response getSpecificOrder(@PathParam("oid") int oid) {
         // calls the "Get All Lamps" use case
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String s = gson.toJson("TestMID");
+    	ExclusionStrategy strategy = new ListStrategy();
+    	
+        Gson gson = new GsonBuilder()
+        		.setDateFormat("yyyyMMdd")
+         	     .setExclusionStrategies(strategy)
+          	     .create();
+        String s = gson.toJson(super.boi.getOrderDetail(oid));
         return Response.status(Response.Status.OK).entity(s).build();
     }
     
     @Path("cancel/{oid}")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getCancelSpecificOrder(@PathParam("oid") int lid,String json) {
-        // calls the "Get All Lamps" use case
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String s = gson.toJson("TestMID");
-        return Response.status(Response.Status.OK).entity(s).build();
+    public Response getCancelSpecificOrder(@Context UriInfo uriInfo,@PathParam("oid") int oid,String json) {
+        Gson gson =  new GsonBuilder().setDateFormat("yyyyMMdd").setPrettyPrinting().create();
+        Order il = gson.fromJson(json, Order.class);
+        if(il == null){
+        	return Response.status(Response.Status.BAD_REQUEST).build();
+        }
+        if(super.boi.getOrderDetail(oid).isNil()){
+        	return Response.status(Response.Status.NOT_FOUND).build();
+        }
+        
+        super.boi.CancellOrder(oid);
+        
+        UriBuilder builder = uriInfo.getAbsolutePathBuilder();
+        builder.path(Integer.toString(oid));
+        
+        return Response.created(builder.build()).status(Response.Status.NO_CONTENT).build();
     }
 
     @PostConstruct

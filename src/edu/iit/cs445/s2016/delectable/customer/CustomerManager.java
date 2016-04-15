@@ -1,23 +1,45 @@
 package edu.iit.cs445.s2016.delectable.customer;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CustomerManager implements BoundaryCustomerInterface {
 
-	 private static List<Customer> customers = new ArrayList<Customer>();
+	 private static Map<Integer,Customer> customers = new HashMap<Integer,Customer>();
 
+	@Override
+	public Customer createCustomer(GenericCustomer entity) {
+		
+		for(Customer temp : customers.values()){
+			if(temp.matchesCustomer(entity)){
+				entity = temp;
+				return temp;
+			}
+		}
+		Customer newCustomer = new Customer();
+		newCustomer.setEmail(entity.email());
+		newCustomer.setName(entity.name());
+		newCustomer.setPhone(entity.phone());
+		
+		//entity.createID();
+		customers.put(newCustomer.id, newCustomer);
+
+		return newCustomer;
+	}
 	
 	@Override
-	public List<Customer> getAllCustomers() {
-		return customers;
+	public Collection<Customer> getAllCustomers() {
+		return customers.values();
 	}
 
 	@Override
 	public List<Customer> getAllCustomersByKey(String queryString) {
 		List<Customer> tempCustomer = new ArrayList<Customer>();
 		
-		for(Customer temp:customers){
+		for(Customer temp: customers.values()){
 			if(temp.name().contains(queryString) || temp.email().contains(queryString) || temp.phone().contains(queryString)){
 				tempCustomer.add(temp);
 			}
@@ -26,11 +48,10 @@ public class CustomerManager implements BoundaryCustomerInterface {
 	}
 
 	@Override
-	public Customer getMenuItemDetail(int cid) {
-		for(Customer temp : customers){
-			if(temp.id() == cid){
-				return temp;
-			}
+	public Customer getCustomerDetail(int cid) {
+
+		if(customers.containsKey(cid)){
+			return customers.get(cid);
 		}
 		return new NullCustomer();
 	}
@@ -40,5 +61,4 @@ public class CustomerManager implements BoundaryCustomerInterface {
 		// TODO Auto-generated method stub
 		
 	}
-
 }
