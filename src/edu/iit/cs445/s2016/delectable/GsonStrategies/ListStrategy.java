@@ -9,7 +9,7 @@ public class ListStrategy implements ExclusionStrategy{
 
 	@Override
 	public boolean shouldSkipField(FieldAttributes arg0) {
-		String[] skip = {"cancelURL","createDate","lastModifiedDate"};
+		String[] skip = {"cancelURL","createDate","lastModifiedDate","orders"};
 		
 		return (Arrays.asList(skip)).contains(arg0.getName()) ;
 	}

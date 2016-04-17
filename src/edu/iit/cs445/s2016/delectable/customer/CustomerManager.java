@@ -38,9 +38,12 @@ public class CustomerManager implements BoundaryCustomerInterface {
 	@Override
 	public List<Customer> getAllCustomersByKey(String queryString) {
 		List<Customer> tempCustomer = new ArrayList<Customer>();
-		
+		queryString = queryString.toLowerCase();
 		for(Customer temp: customers.values()){
-			if(temp.name().contains(queryString) || temp.email().contains(queryString) || temp.phone().contains(queryString)){
+			if(temp.name().toLowerCase().contains(queryString) 
+					|| temp.email().toLowerCase().contains(queryString) 
+					|| temp.phone().toLowerCase().contains(queryString))
+			{
 				tempCustomer.add(temp);
 			}
 		}

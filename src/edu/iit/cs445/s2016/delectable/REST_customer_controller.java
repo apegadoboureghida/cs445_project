@@ -15,14 +15,19 @@ public class REST_customer_controller extends REST_AbstractController{
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAllOrders() {
+    public Response getAllOrders(@QueryParam("key") String keyString) {
         // calls the "Get All Lamps" use case
     	ExclusionStrategy strategy = new ListStrategy();
     	
         Gson gson = new GsonBuilder()
          	     .setExclusionStrategies(strategy)
           	     .create();
-        String s = gson.toJson(super.bci.getAllCustomers());
+        String s;
+        if(keyString == null){
+        	s= gson.toJson(super.bci.getAllCustomers());
+        }else{
+        	s= gson.toJson(super.bci.getAllCustomersByKey(keyString));
+        }
         return Response.status(Response.Status.OK).entity(s).build();
     }
     

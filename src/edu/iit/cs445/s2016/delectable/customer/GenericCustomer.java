@@ -2,8 +2,6 @@ package edu.iit.cs445.s2016.delectable.customer;
 
 import com.google.gson.annotations.SerializedName;
 
-import edu.iit.cs445.s2016.delectable.UniqueIdGenerator;
-
 public class GenericCustomer {
 	
 

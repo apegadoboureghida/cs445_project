@@ -8,14 +8,15 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 
 @Path("/report")
-public class REST_report_controller {
+public class REST_report_controller extends REST_AbstractController{
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAllOrders() {
-        // calls the "Get All Lamps" use case
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String s = gson.toJson("Test");
+    public Response getAllReports() {
+	
+        Gson gson = new GsonBuilder()
+          	     .create();
+        String s = gson.toJson(super.bri.getAllRerports());
         return Response.status(Response.Status.OK).entity(s).build();
     }
     

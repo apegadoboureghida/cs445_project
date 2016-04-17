@@ -6,7 +6,6 @@ import com.google.gson.GsonBuilder;
 
 import edu.iit.cs445.s2016.delectable.GsonStrategies.CreateStrategy;
 import edu.iit.cs445.s2016.delectable.GsonStrategies.ListStrategy;
-import edu.iit.cs445.s2016.delectable.customer.Customer;
 import edu.iit.cs445.s2016.delectable.menu.MenuItem;
 import edu.iit.cs445.s2016.delectable.order.Order;
 import edu.iit.cs445.s2016.delectable.order.OrderItem;
@@ -20,7 +19,7 @@ public class REST_order_controller extends REST_AbstractController{
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAllOrders() {
+    public Response getAllOrders(@QueryParam("date") String date) {
         // calls the "Get All Lamps" use case
     	ExclusionStrategy strategy = new ListStrategy();
     	
@@ -28,10 +27,15 @@ public class REST_order_controller extends REST_AbstractController{
          	     .setExclusionStrategies(strategy)
          	    .setDateFormat("yyyyMMdd")
           	     .create();
-        String s = gson.toJson(super.boi.getAllOrders());
+        String s;
+        if(date == null){
+        s = gson.toJson(super.boi.getAllOrders());
+        }else{
+        	s = gson.toJson(super.boi.getAllOrdersByDate(Common.StringToData(date)));
+        }
         return Response.status(Response.Status.OK).entity(s).build();
     }
-
+    
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     public Response makeOrder(@Context UriInfo uriInfo, String json) {
@@ -59,7 +63,9 @@ public class REST_order_controller extends REST_AbstractController{
         
         
         Order l = super.boi.createOrder(il);
+        
         super.bci.createCustomer(il.customer());
+        super.bri.addOrder(l);
         
         id = l.getID();
         

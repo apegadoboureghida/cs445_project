@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
+import edu.iit.cs445.s2016.delectable.Common;
 import edu.iit.cs445.s2016.delectable.UniqueIdGenerator;
 import edu.iit.cs445.s2016.delectable.customer.GenericCustomer;
 
@@ -60,6 +61,11 @@ public class Order {
     public boolean matchesId(int mid) {
         return(mid == this.id);
     }
+    
+    public boolean deliveryMach(Date date){
+    	       	
+    	return Common.isSameDay(date,this.deliveryDate);
+    }
 
     public boolean isNil() {
         return false;
@@ -67,5 +73,9 @@ public class Order {
 
     public int getID() {
         return this.id;
+    }
+    
+    public Date deliveryDate(){
+    	return this.deliveryDate;
     }
 }

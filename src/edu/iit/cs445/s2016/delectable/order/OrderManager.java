@@ -1,9 +1,8 @@
 package edu.iit.cs445.s2016.delectable.order;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class OrderManager implements BoundaryOrderInterface{
@@ -20,6 +19,20 @@ public class OrderManager implements BoundaryOrderInterface{
 	@Override
 	public Collection<Order> getAllOrders() {
 		return orders.values();
+	}
+	
+	@Override
+	public Collection<Order> getAllOrdersByDate(Date date) {
+		
+		Map<Integer,Order> result = new HashMap<Integer,Order>();
+		
+		for(Order tmp : orders.values()){
+			if(tmp.deliveryMach(date)){
+				result.put(tmp.getID(), tmp);
+			}
+		}
+		
+		return result.values();
 	}
 
 	@Override
