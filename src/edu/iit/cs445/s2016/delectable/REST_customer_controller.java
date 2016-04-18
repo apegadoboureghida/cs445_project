@@ -36,8 +36,17 @@ public class REST_customer_controller extends REST_AbstractController{
     @Produces(MediaType.APPLICATION_JSON)
     public Response getSpecificOrder(@PathParam("cid") int lid) {
         // calls the "Get All Lamps" use case
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String s = gson.toJson("TestMID");
+    	ExclusionStrategy strategy = new ListStrategy();
+    	
+        Gson gson = new GsonBuilder()
+         	     .setExclusionStrategies(strategy)
+          	     .create();
+        if(super.bci.getCustomerDetail(lid).isNil())
+        {
+        	return Response.status(Response.Status.NOT_FOUND).build();
+        }
+        String s= gson.toJson(super.bci.getCustomerDetail(lid));
+
         return Response.status(Response.Status.OK).entity(s).build();
     }
     

@@ -10,6 +10,8 @@ import edu.iit.cs445.s2016.delectable.menu.MenuItem;
 import edu.iit.cs445.s2016.delectable.order.Order;
 import edu.iit.cs445.s2016.delectable.order.OrderItem;
 
+import java.util.Date;
+
 import javax.annotation.PostConstruct;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
@@ -51,6 +53,11 @@ public class REST_order_controller extends REST_AbstractController{
 
         
         double amount = 0;
+        if(il.deliveryDate() == null || il.deliveryAddress() == null || il.customer()== null || il.orderDetail() == null || il.orderDetail().isEmpty())
+        {
+        	return Response.status(Response.Status.BAD_REQUEST).build();
+        }
+        
         for(OrderItem item:il.orderDetail()){
         	MenuItem temp = super.bi.getMenuItemDetail(item.getID());
         	if(temp.isNil() || temp.minimumOrder()> item.count()){
@@ -110,7 +117,9 @@ public class REST_order_controller extends REST_AbstractController{
         if(super.boi.getOrderDetail(oid).isNil()){
         	return Response.status(Response.Status.NOT_FOUND).build();
         }
-        
+        if(Common.isSameDay(new Date(), super.boi.getOrderDetail(oid).deliveryDate())){
+        	return Response.status(Response.Status.BAD_REQUEST).build();
+        }
         super.boi.CancellOrder(oid);
         
         UriBuilder builder = uriInfo.getAbsolutePathBuilder();

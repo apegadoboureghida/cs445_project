@@ -46,7 +46,14 @@ public class ReportManager implements BoundaryReportInterface {
 				return reportTypes.get(rid);
 			case 802:
 				reportTypes.put(802,new ReportType(802,"Orders to deliver tomorrow"));
-				reportTypes.get(rid).setOrders(orders.get(Common.tomorrowAsString()));
+				List<Order> ordersAux = new ArrayList<Order>();
+				
+				for(Order tmp :orders.get(Common.tomorrowAsString()) ){
+					if(tmp.status()== OrderStatus.OPEN){
+						ordersAux.add(tmp);
+					}
+				}
+				reportTypes.get(rid).setOrders(ordersAux);
 				return reportTypes.get(rid);
 			case 803:
 				reportTypes.put(803,new ReportType(803,"Revenue report"));

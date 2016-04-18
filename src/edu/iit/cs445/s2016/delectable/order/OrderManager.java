@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import edu.iit.cs445.s2016.delectable.Common;
+
 public class OrderManager implements BoundaryOrderInterface{
 
 	private static Map<Integer,Order> orders = new HashMap<Integer,Order>();
@@ -50,10 +52,17 @@ public class OrderManager implements BoundaryOrderInterface{
 	}
 
 	@Override
-	public void CancellOrder(int oid) {
-		if(orders.containsKey(oid))
-			orders.get(oid).setStatus(OrderStatus.CANCELLED);
+	public boolean CancellOrder(int oid) {
+		if(orders.containsKey(oid)){
+			if(!Common.isSameDay(new Date(),orders.get(oid).deliveryDate())){
+				orders.get(oid).setStatus(OrderStatus.CANCELLED);
+				return true;
+			}
+		}
+
+		return false;
 	}
+	
 
 	@Override
 	public void setDeliverd(int oid) {

@@ -6,22 +6,22 @@ import edu.iit.cs445.s2016.delectable.Common;
 
 public class SurchargeManager implements BoundarySurchargeInterface {
 
-	private Surcharge surcharge;
+	private static Surcharge surcharge  = new Surcharge();;
 	
 	public SurchargeManager(){
-		this.surcharge = new Surcharge();
+
 	}
 
 	@Override
 	public void setSurcharge(double amount) {
-		this.surcharge.setSurcharge(amount);
+		surcharge.setSurcharge(amount);
 		
 	}
 
 	@Override
 	public Surcharge getSurcharge(Date date) {
 		if(Common.isWeekend(date)){
-			return this.surcharge;
+			return surcharge;
 		}else
 		{
 		return new Surcharge();
@@ -30,6 +30,6 @@ public class SurchargeManager implements BoundarySurchargeInterface {
 	
 	@Override
 	public Surcharge getSurcharge() {
-			return this.surcharge;
+			return surcharge;
 	}
 }

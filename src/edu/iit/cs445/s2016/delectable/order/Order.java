@@ -26,6 +26,8 @@ public class Order {
 	private GenericCustomer customer;
 	@SerializedName("note")
 	private String note;
+	@SerializedName("delivery_address")
+	private String deliveryAddress;
 	@SerializedName("order_detail")
 	private List<OrderItem> orderDetail;
 	@SerializedName("cancel_url")
@@ -95,5 +97,9 @@ public class Order {
     
     public Date deliveryDate(){
     	return this.deliveryDate;
+    }
+    
+    public String deliveryAddress(){
+    	return this.deliveryAddress;
     }
 }

@@ -1,11 +1,8 @@
 package edu.iit.cs445.s2016.delectable;
 
-import com.google.gson.ExclusionStrategy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import edu.iit.cs445.s2016.delectable.GsonStrategies.ListStrategy;
-import edu.iit.cs445.s2016.delectable.order.Order;
 import edu.iit.cs445.s2016.delectable.surcharge.Surcharge;
 
 import javax.annotation.PostConstruct;
@@ -29,12 +26,12 @@ public class REST_adminSurcharge_controller extends REST_AbstractController{
     @Produces(MediaType.APPLICATION_JSON)
     public Response getSpecificOrder(String json) {
         Gson gson =  new GsonBuilder().setDateFormat("yyyyMMdd").setPrettyPrinting().create();
-        Order il = gson.fromJson(json, Surcharge.class);
+        Surcharge il = gson.fromJson(json, Surcharge.class);
         if(il == null){
         	return Response.status(Response.Status.BAD_REQUEST).build();
         }
         
-        super.bsi.setSurcharge(il.amount());
+        super.bsi.setSurcharge(il.surcharge());
         
         return Response.status(Response.Status.NO_CONTENT).build();
     }

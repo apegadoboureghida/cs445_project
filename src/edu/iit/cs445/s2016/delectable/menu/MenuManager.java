@@ -30,7 +30,9 @@ public class MenuManager implements BoundaryMenuInterface {
 	
 	@Override
 	public void updateMenuItemDetail(MenuItem entity) {
-		menu.get(entity.getID()).setPricePerPerson(entity.pricePerPerson());
+		if(menu.containsKey(entity.getID())){
+			menu.get(entity.getID()).setPricePerPerson(entity.pricePerPerson());
+		}
     }
 
 
