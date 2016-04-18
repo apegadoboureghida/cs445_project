@@ -54,4 +54,10 @@ public class OrderManager implements BoundaryOrderInterface{
 		if(orders.containsKey(oid))
 			orders.get(oid).setStatus(OrderStatus.CANCELLED);
 	}
+
+	@Override
+	public void setDeliverd(int oid) {
+		if(orders.containsKey(oid))
+			orders.get(oid).setStatus(OrderStatus.DELIVERD);		
+	}
 }

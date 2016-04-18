@@ -36,6 +36,13 @@ public class Common {
              cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR));
  }
  
+ public static boolean isWeekend(Date date){
+		Calendar cal1 = Calendar.getInstance();
+	 	cal1.setTime(date);	 	
+	 	
+	 	return cal1.DAY_OF_WEEK == Calendar.SATURDAY || cal1.DAY_OF_WEEK == Calendar.SUNDAY;
+ }
+ 
  public static String todayAsString() {
 	 
 	 	Calendar cal1 = Calendar.getInstance();

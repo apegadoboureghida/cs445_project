@@ -14,6 +14,8 @@ public class Order {
     private int id;
 	@SerializedName("amount") 
     private double amount;
+	@SerializedName("surcharge") 
+    private double surcharge;
 	@SerializedName("status") 
     private OrderStatus status;
 	@SerializedName("delivery_date") 
@@ -46,8 +48,24 @@ public class Order {
     	return this.orderDetail;
     }
 
+    public double amount(){
+    	return this.amount;
+    }
+    
     public void setAmount(double amount){
     	this.amount = amount;
+    }
+    
+    public double surcharge(){
+    	return this.surcharge;
+    }
+    
+    public void setsurcharge(double surcharge){
+    	this.surcharge = surcharge;
+    }
+    
+    public OrderStatus status(){
+    	return this.status;
     }
     
     public void setStatus(OrderStatus status){

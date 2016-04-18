@@ -11,6 +11,8 @@ import edu.iit.cs445.s2016.delectable.order.BoundaryOrderInterface;
 import edu.iit.cs445.s2016.delectable.order.OrderManager;
 import edu.iit.cs445.s2016.delectable.report.BoundaryReportInterface;
 import edu.iit.cs445.s2016.delectable.report.ReportManager;
+import edu.iit.cs445.s2016.delectable.surcharge.BoundarySurchargeInterface;
+import edu.iit.cs445.s2016.delectable.surcharge.SurchargeManager;
 
 @Path("/")
 public class REST_AbstractController {
@@ -19,6 +21,7 @@ public class REST_AbstractController {
     protected BoundaryOrderInterface boi = new OrderManager();
     protected BoundaryCustomerInterface bci = new CustomerManager();
 	protected BoundaryReportInterface bri = new ReportManager();
+	protected BoundarySurchargeInterface bsi = new SurchargeManager();
     
     @PostConstruct
     public void postConstruct() {

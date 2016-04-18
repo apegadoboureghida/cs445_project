@@ -1,31 +1,42 @@
 package edu.iit.cs445.s2016.delectable;
 
+import com.google.gson.ExclusionStrategy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import edu.iit.cs445.s2016.delectable.GsonStrategies.ListStrategy;
+import edu.iit.cs445.s2016.delectable.order.Order;
+import edu.iit.cs445.s2016.delectable.surcharge.Surcharge;
 
 import javax.annotation.PostConstruct;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 
 @Path("/admin/surcharge")
-public class REST_adminSurcharge_controller {
+public class REST_adminSurcharge_controller extends REST_AbstractController{
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAllOrders() {
-        // calls the "Get All Lamps" use case
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String s = gson.toJson("Test");
+    public Response getAllOrders() {    	
+        Gson gson = new GsonBuilder()
+          	     .create();
+        String s = gson.toJson(super.bsi.getSurcharge());
+        
         return Response.status(Response.Status.OK).entity(s).build();
     }
     
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getSpecificOrder(@PathParam("rid") int lid, String json) {
-        // calls the "Get All Lamps" use case
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String s = gson.toJson("TestMID");
-        return Response.status(Response.Status.OK).entity(s).build();
+    public Response getSpecificOrder(String json) {
+        Gson gson =  new GsonBuilder().setDateFormat("yyyyMMdd").setPrettyPrinting().create();
+        Order il = gson.fromJson(json, Surcharge.class);
+        if(il == null){
+        	return Response.status(Response.Status.BAD_REQUEST).build();
+        }
+        
+        super.bsi.setSurcharge(il.amount());
+        
+        return Response.status(Response.Status.NO_CONTENT).build();
     }
 
     @PostConstruct

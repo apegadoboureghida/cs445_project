@@ -60,7 +60,7 @@ public class REST_order_controller extends REST_AbstractController{
         	amount += temp.pricePerPerson() * item.count();
         }
         il.setAmount(amount);
-        
+        il.setsurcharge(super.bsi.getSurcharge(il.deliveryDate()).surcharge());
         
         Order l = super.boi.createOrder(il);
         

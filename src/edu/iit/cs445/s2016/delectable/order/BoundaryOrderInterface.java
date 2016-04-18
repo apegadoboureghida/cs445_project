@@ -10,5 +10,6 @@ public interface BoundaryOrderInterface {
     Order getOrderDetail(int oid);
     void updateOrders();
     void CancellOrder(int oid);
+    void setDeliverd(int oid);
 	Collection<Order> getAllOrdersByDate(Date date);
 }
