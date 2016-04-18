@@ -22,12 +22,17 @@ public class ReportManager implements BoundaryReportInterface {
 		reportTypes.put(801,new ReportType(801,"Orders to deliver today"));
 		reportTypes.put(802,new ReportType(802,"Orders to deliver tomorrow"));
 		reportTypes.put(803,new ReportType(803,"Revenue report"));
-		reportTypes.put(803,new ReportType(803,"Orders delivery report"));
+		reportTypes.put(804,new ReportType(804,"Orders delivery report"));
 	}
 	
 	
 	@Override
 	public Collection<ReportType> getAllRerports() {
+		
+		reportTypes.put(801,new ReportType(801,"Orders to deliver today"));
+		reportTypes.put(802,new ReportType(802,"Orders to deliver tomorrow"));
+		reportTypes.put(803,new ReportType(803,"Revenue report"));
+		reportTypes.put(804,new ReportType(804,"Orders delivery report"));
 		return reportTypes.values();
 	}
 
@@ -77,7 +82,7 @@ public class ReportManager implements BoundaryReportInterface {
 				
 				return reportTypes.get(rid);
 			case 804:
-				reportTypes.put(803,new ReportType(803,"Orders delivery report"));
+				reportTypes.put(804,new ReportType(804,"Orders delivery report"));
 				reportTypes.get(rid).setOrders(orders.get(Common.tomorrowAsString()));
 				double foodRevenueD = 0;
 				double surchargeRevenueD = 0;

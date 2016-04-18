@@ -11,7 +11,7 @@ public class ReportType {
 	
 	@SerializedName("id") 
     private int id;
-	@SerializedName("id") 
+	@SerializedName("name") 
     private String name;
 	@SerializedName("orders")
 	private List<Order> orders;
@@ -31,7 +31,8 @@ public class ReportType {
 	private double surchargeRevenue;
 	
 	public ReportType(int id,String name){
-		
+		this.id = id;
+		this.name = name;
 	}
 	
 	public void setStartDate(Date date){

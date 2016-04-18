@@ -53,7 +53,7 @@ public class REST_order_controller extends REST_AbstractController{
         double amount = 0;
         for(OrderItem item:il.orderDetail()){
         	MenuItem temp = super.bi.getMenuItemDetail(item.getID());
-        	if(temp == null || temp.minimumOrder()> item.count()){
+        	if(temp.isNil() || temp.minimumOrder()> item.count()){
         		return Response.status(Response.Status.BAD_REQUEST).build();
         	}
         	item.setName(temp.name());

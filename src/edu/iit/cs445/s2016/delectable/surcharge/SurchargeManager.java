@@ -7,6 +7,10 @@ import edu.iit.cs445.s2016.delectable.Common;
 public class SurchargeManager implements BoundarySurchargeInterface {
 
 	private Surcharge surcharge;
+	
+	public SurchargeManager(){
+		this.surcharge = new Surcharge();
+	}
 
 	@Override
 	public void setSurcharge(double amount) {
