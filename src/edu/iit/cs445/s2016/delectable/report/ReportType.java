@@ -35,6 +35,46 @@ public class ReportType {
 		this.name = name;
 	}
 	
+	public int id(){
+		return this.id;
+	}
+	
+	public String name(){
+		return this.name;
+	}
+	
+	public List<Order> orders(){
+		return this.orders;
+	}
+	
+	public Date startDate(){
+		return this.startDate;
+	}
+	
+	public Date endDate(){
+		return this.endDate;
+	}
+	
+	public int ordersPlaced(){
+		return this.ordersPlaced;
+	}
+	
+	public int ordersCancelled(){
+		return this.ordersCancelled;
+	}
+	
+	public int ordersOpen(){
+		return this.ordersOpen;
+	}
+	
+	public double foodRevenue(){
+		return this.foodRevenue;
+	}
+	
+	public double surchargeRevenue(){
+		return this.surchargeRevenue;
+	}
+	
 	public void setStartDate(Date date){
 		this.startDate = date;
 	}
