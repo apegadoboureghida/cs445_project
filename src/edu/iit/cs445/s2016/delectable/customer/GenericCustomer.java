@@ -32,7 +32,7 @@ public class GenericCustomer {
     }
        
     public boolean matchesCustomer(GenericCustomer customer) {
-        return(customer.email().equals(this.email) && customer.name().equals(this.name) && (customer.phone().equals(this.phone)));
+        return(customer.email() ==this.email && customer.name() == this.name && customer.phone() == this.phone);
     }
 
 	public void setName(String name) {

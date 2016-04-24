@@ -47,11 +47,6 @@ public class OrderManager implements BoundaryOrderInterface{
 	}
 
 	@Override
-	public void updateOrders() {
-	
-	}
-
-	@Override
 	public boolean CancellOrder(int oid) {
 		if(orders.containsKey(oid)){
 			if(!Common.isSameDay(new Date(),orders.get(oid).deliveryDate())){

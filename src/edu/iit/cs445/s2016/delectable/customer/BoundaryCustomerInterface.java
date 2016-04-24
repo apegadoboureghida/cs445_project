@@ -9,5 +9,4 @@ public interface BoundaryCustomerInterface {
 	Collection<Customer> getAllCustomers();
 	Collection<Customer> getAllCustomersByKey(String queryString);
     Customer getCustomerDetail(int cid);
-    void updateCustomerOrders();
 }

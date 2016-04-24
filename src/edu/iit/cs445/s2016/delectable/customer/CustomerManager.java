@@ -19,6 +19,7 @@ public class CustomerManager implements BoundaryCustomerInterface {
 				return temp;
 			}
 		}
+		
 		Customer newCustomer = new Customer();
 		newCustomer.setEmail(entity.email());
 		newCustomer.setName(entity.name());
@@ -57,11 +58,5 @@ public class CustomerManager implements BoundaryCustomerInterface {
 			return customers.get(cid);
 		}
 		return new NullCustomer();
-	}
-
-	@Override
-	public void updateCustomerOrders() {
-		// TODO Auto-generated method stub
-		
 	}
 }

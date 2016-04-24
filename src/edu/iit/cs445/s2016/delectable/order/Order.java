@@ -49,6 +49,10 @@ public class Order {
     public List<OrderItem> orderDetail(){
     	return this.orderDetail;
     }
+    
+    public void setOrderDetail(List<OrderItem> orderDetail){
+    	this.orderDetail = orderDetail;
+    }
 
     public double amount(){
     	return this.amount;
@@ -105,5 +109,9 @@ public class Order {
     
     public String deliveryAddress(){
     	return this.deliveryAddress;
+    }
+    
+    public void setDeliveryAddress(String deliveryAddress){
+    	this.deliveryAddress = deliveryAddress;
     }
 }

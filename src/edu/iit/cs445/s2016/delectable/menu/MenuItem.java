@@ -35,6 +35,10 @@ public class MenuItem {
         return name;
     }
     
+    public void setName(String name) {
+        this.name = name;
+    }
+    
     public Double pricePerPerson(){
     	return  this.pricePerPerson;
     }
@@ -47,6 +51,10 @@ public class MenuItem {
     	return this.minimumOrder;
     }
     
+    public void setMinimumOrder(int minimumOrder){
+    	this.minimumOrder = minimumOrder;
+    }
+    
     public Date createDate(){
     	return this.createDate;
     }
@@ -57,6 +65,10 @@ public class MenuItem {
     
     public List<Category> categories(){
     	return this.categories;
+    }
+    
+    public void setCategories(List<Category> categories){
+    	this.categories = categories;
     }
     
     public boolean matchesId(int mid) {

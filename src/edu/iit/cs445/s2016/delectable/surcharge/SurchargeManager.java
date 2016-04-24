@@ -6,10 +6,10 @@ import edu.iit.cs445.s2016.delectable.Common;
 
 public class SurchargeManager implements BoundarySurchargeInterface {
 
-	private static Surcharge surcharge  = new Surcharge();;
+	private static Surcharge surcharge;
 	
 	public SurchargeManager(){
-
+		surcharge  = new Surcharge();
 	}
 
 	@Override

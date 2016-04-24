@@ -22,6 +22,9 @@ public class OrderItem {
     	this.name = name;
     }
     
+    public void setCount(int count){
+    	this.count = count;
+    }
     public int count(){
     	return this.count;
     }

@@ -8,7 +8,6 @@ public interface BoundaryOrderInterface {
 	Order createOrder(Order entity);
     Collection<Order> getAllOrders();
     Order getOrderDetail(int oid);
-    void updateOrders();
     boolean CancellOrder(int oid);
     void setDeliverd(int oid);
 	Collection<Order> getAllOrdersByDate(Date date);
