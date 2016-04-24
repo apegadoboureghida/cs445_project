@@ -40,7 +40,7 @@ public class Common {
 		Calendar cal1 = Calendar.getInstance();
 	 	cal1.setTime(date);	 	
 	 	
-	 	return cal1.DAY_OF_WEEK == Calendar.SATURDAY || cal1.DAY_OF_WEEK == Calendar.SUNDAY;
+	 	return cal1.get(Calendar.DAY_OF_WEEK) == cal1.get(Calendar.SATURDAY) || (cal1.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY);
  }
  
  public static String todayAsString() {
