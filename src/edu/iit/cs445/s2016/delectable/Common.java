@@ -1,5 +1,6 @@
 package edu.iit.cs445.s2016.delectable;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -44,25 +45,23 @@ public class Common {
  }
  
  public static String todayAsString() {
-	 
-	 	Calendar cal1 = Calendar.getInstance();
-
-	     return	"" +cal1.get(Calendar.YEAR) +cal1.get(Calendar.MONTH)+cal1.get(Calendar.DAY_OF_MONTH);
-	 }
+	 return DateString(new Date());
+}
  
  public static String tomorrowAsString() {
-	 
-	 	Calendar cal1 = Calendar.getInstance();
-	 	cal1.add(Calendar.DAY_OF_MONTH, 1);
-
-	     return	"" +cal1.get(Calendar.YEAR) +cal1.get(Calendar.MONTH)+cal1.get(Calendar.DAY_OF_MONTH);
+		 Date date = new Date();
+		 Calendar c = Calendar.getInstance(); 
+		 c.setTime(date); 
+		 c.add(Calendar.DATE, 1);
+		 date = c.getTime();
+		 
+		 return DateString(date);
 	 }
  
  public static String DateString(Date date) {
 	 
-	 	Calendar cal1 = Calendar.getInstance();
-	 	cal1.setTime(date);
-	 	
-	     return	"" +cal1.get(Calendar.YEAR) +cal1.get(Calendar.MONTH)+cal1.get(Calendar.DAY_OF_MONTH);
+	 DateFormat df = new SimpleDateFormat("yyyyMMdd");
+	 
+	 return  df.format(date);
 	 }
 }
