@@ -8,6 +8,6 @@ import edu.iit.cs445.s2016.delectable.order.Order;
 public interface BoundaryReportInterface {
 	
 	void addOrder(Order order);
-	Collection<ReportType> getAllRerports();
+	Collection<ReportType> getAllReports();
 	ReportType getRerport(int rid);
 }

@@ -95,6 +95,10 @@ public class Order {
         return this.id;
     }
     
+    public void setDeliveryDate(Date date){
+    	this.deliveryDate = date;
+    }
+    
     public Date deliveryDate(){
     	return this.deliveryDate;
     }

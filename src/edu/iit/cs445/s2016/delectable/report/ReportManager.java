@@ -26,7 +26,7 @@ public class ReportManager implements BoundaryReportInterface {
 	
 	
 	@Override
-	public Collection<ReportType> getAllRerports() {
+	public Collection<ReportType> getAllReports() {
 		
 		reportTypes.put(801,new ReportType(801,"Orders to deliver today"));
 		reportTypes.put(802,new ReportType(802,"Orders to deliver tomorrow"));
@@ -46,10 +46,11 @@ public class ReportManager implements BoundaryReportInterface {
 			case 802:
 				reportTypes.put(802,new ReportType(802,"Orders to deliver tomorrow"));
 				List<Order> ordersAux = new ArrayList<Order>();
-				
-				for(Order tmp :orders.get(Common.tomorrowAsString()) ){
-					if(tmp.status()== OrderStatus.OPEN){
-						ordersAux.add(tmp);
+				if(orders.get(Common.tomorrowAsString()) != null){
+					for(Order tmp :orders.get(Common.tomorrowAsString()) ){
+						if(tmp.status()== OrderStatus.OPEN){
+							ordersAux.add(tmp);
+						}
 					}
 				}
 				reportTypes.get(rid).setOrders(ordersAux);

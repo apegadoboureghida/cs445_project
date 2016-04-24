@@ -22,7 +22,7 @@ public class REST_report_controller extends REST_AbstractController{
         Gson gson = new GsonBuilder()
          	     .setExclusionStrategies(strategy)
           	     .create();
-        String s = gson.toJson(super.bri.getAllRerports());
+        String s = gson.toJson(super.bri.getAllReports());
         return Response.status(Response.Status.OK).entity(s).build();
     }
     
