@@ -10,8 +10,20 @@
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.7"/>
     <property name="source" value="1.7"/>
+  	<path id="cobertura.class.path">
+  	    <pathelement location="lib/cobertura.jar" />
+  	    <pathelement location="lib/lib/asm-4.1.jar" />
+  		<pathelement location="lib/lib/asm-util-4.1.jar" />
+  	    <pathelement location="lib/lib/asm-tree-4.1.jar" />
+  		<pathelement location="lib/lib/asm-analysis-4.1.jar" />
+  		<pathelement location="lib/lib/oro-2.0.8.jar" />
+  		<pathelement location="lib/lib/asm-commons-4.1.jar" />
+  	    <pathelement location="lib/lib/log4j-1.2.9.jar" />
+  	</path>
     <path id="JUnit 4.libraryclasspath">
         <pathelement location="lib/junit.jar"/>
+        <pathelement location="lib/org.hamcrest.core_1.3.0.v201303031735.jar"/>
+    	<pathelement location="lib/log4j-1.2.jar"/>
     </path>
     <path id="cs445_project.classpath">
         <pathelement location="bin"/>
@@ -56,39 +68,58 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
-    <target name="ReportManagerTest">
+              	
+    <taskdef classpathref="cobertura.class.path" resource="tasks.properties" />
+              	
+  	<target name="instrument">
+  	  <cobertura-instrument todir="target/instrumented-classes" datafile="cobertura.ser">
+  	    <fileset dir="bin">
+  	      <include name="**/*.class"/>
+  	    </fileset>
+  	  </cobertura-instrument>
+  	</target>
+              	
+    <target name="ReportManagerTest" depends="instrument">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
             <test name="edu.iit.cs445.s2016.delectable.report.ReportManagerTest" todir="${junit.output.dir}"/>
             <classpath refid="cs445_project.classpath"/>
+           	<classpath location="target/instrumented-classes"/>
+        	<classpath location="bin"/>
         </junit>
     </target>
-    <target name="OrderItemTest">
+    <target name="OrderItemTest" depends="instrument">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
             <test name="edu.iit.cs445.s2016.delectable.order.OrderItemTest" todir="${junit.output.dir}"/>
             <classpath refid="cs445_project.classpath"/>
+            <classpath refid="cs445_project.classpath"/>
+           	<classpath location="target/instrumented-classes"/>
         </junit>
     </target>
-    <target name="ReportTypeTest">
+    <target name="ReportTypeTest" depends="instrument">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
             <test name="edu.iit.cs445.s2016.delectable.report.ReportTypeTest" todir="${junit.output.dir}"/>
             <classpath refid="cs445_project.classpath"/>
+            <classpath refid="cs445_project.classpath"/>
+           	<classpath location="target/instrumented-classes"/>
         </junit>
     </target>
-    <target name="SurchargeManagerTest">
+    <target name="SurchargeManagerTest" depends="instrument">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
             <test name="edu.iit.cs445.s2016.delectable.surcharge.SurchargeManagerTest" todir="${junit.output.dir}"/>
             <classpath refid="cs445_project.classpath"/>
+            <classpath refid="cs445_project.classpath"/>
+           	<classpath location="target/instrumented-classes"/>
         </junit>
     </target>
-    <target name="src (1)">
+    <target name="src (1)" depends="instrument">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
@@ -110,9 +141,11 @@
             <test name="edu.iit.cs445.s2016.delectable.surcharge.SurchargeManagerTest" todir="${junit.output.dir}"/>
             <test name="edu.iit.cs445.s2016.delectable.surcharge.SurchargeTest" todir="${junit.output.dir}"/>
             <classpath refid="cs445_project.classpath"/>
+            <classpath refid="cs445_project.classpath"/>
+           	<classpath location="target/instrumented-classes"/>
         </junit>
     </target>
-    <target name="cs445_project">
+    <target name="cs445_project" depends="instrument">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
@@ -134,30 +167,38 @@
             <test name="edu.iit.cs445.s2016.delectable.surcharge.SurchargeManagerTest" todir="${junit.output.dir}"/>
             <test name="edu.iit.cs445.s2016.delectable.surcharge.SurchargeTest" todir="${junit.output.dir}"/>
             <classpath refid="cs445_project.classpath"/>
+            <classpath refid="cs445_project.classpath"/>
+           	<classpath location="target/instrumented-classes"/>
         </junit>
     </target>
-    <target name="OrderManagerTest">
+    <target name="OrderManagerTest" depends="instrument">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
             <test name="edu.iit.cs445.s2016.delectable.order.OrderManagerTest" todir="${junit.output.dir}"/>
             <classpath refid="cs445_project.classpath"/>
+            <classpath refid="cs445_project.classpath"/>
+           	<classpath location="target/instrumented-classes"/>
         </junit>
     </target>
-    <target name="SurchargeTest">
+    <target name="SurchargeTest" depends="instrument">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
             <test name="edu.iit.cs445.s2016.delectable.surcharge.SurchargeTest" todir="${junit.output.dir}"/>
             <classpath refid="cs445_project.classpath"/>
+            <classpath refid="cs445_project.classpath"/>
+           	<classpath location="target/instrumented-classes"/>
         </junit>
     </target>
-    <target name="CommonTest">
+    <target name="CommonTest" depends="instrument">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
             <test name="edu.iit.cs445.s2016.delectable.CommonTest" todir="${junit.output.dir}"/>
             <classpath refid="cs445_project.classpath"/>
+        	<classpath location="lib/cobertura*.jar"/>
+        	<classpath location="target/instrumented-classes"/>
         </junit>
     </target>
     <target name="junitreport">
@@ -167,5 +208,10 @@
             </fileset>
             <report format="frames" todir="${junit.output.dir}"/>
         </junitreport>
+        <cobertura-report format="xml" srcdir="src" destdir="${junit.output.dir}/d" datafile="cobertura.ser" />
+
+        <cobertura-report format="html" srcdir="src" destdir="${junit.output.dir}/d" datafile="cobertura.ser" />
+
     </target>
+              
 </project>
