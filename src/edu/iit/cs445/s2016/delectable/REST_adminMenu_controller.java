@@ -46,19 +46,13 @@ public class REST_adminMenu_controller extends REST_AbstractController{
     @Path("{mid}")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getSpecificOrder(@PathParam("mid") int lid, String json) {
+    public Response getSpecificItem(@PathParam("mid") int lid, String json) {
         // update existing MenuItem
         Gson gson = new Gson();
         MenuItem il = gson.fromJson(json, MenuItem.class);
         super.bi.updateMenuItemDetail(il);
 
         return Response.ok().build();
-    }
-
-    @PostConstruct
-    public void postConstruct() {
-        // This method gets executed exactly once, after the servlet container has been created
-        // A good place to place code that needs to be executed once, at startup
     }
 }
 

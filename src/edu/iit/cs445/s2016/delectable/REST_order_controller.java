@@ -127,11 +127,5 @@ public class REST_order_controller extends REST_AbstractController{
         
         return Response.created(builder.build()).status(Response.Status.NO_CONTENT).build();
     }
-
-    @PostConstruct
-    public void postConstruct() {
-        // This method gets executed exactly once, after the servlet container has been created
-        // A good place to place code that needs to be executed once, at startup
-    }
 }
 
