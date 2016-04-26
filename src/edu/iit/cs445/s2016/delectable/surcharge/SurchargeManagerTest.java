@@ -23,7 +23,6 @@ public class SurchargeManagerTest {
 	@Test
 	public void testSetSurcharge() {
 		manager.setSurcharge(20.5);
-		System.out.print(manager.getSurcharge().surcharge());
 
 		assertTrue(manager.getSurcharge().surcharge() == 20.5);
 	}
@@ -37,7 +36,6 @@ public class SurchargeManagerTest {
 		date.setDate(25);
 		date.setMonth(4);
 		date.setYear(2016);
-		System.out.print(manager.getSurcharge().surcharge());
 		assertTrue(manager.getSurcharge().surcharge() == 20.5);
 	}
 }

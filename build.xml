@@ -1,217 +1,47 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- WARNING: Eclipse auto-generated file.
-              Any modifications will be overwritten.
-              To include a user specific buildfile here, simply create one in the same
-              directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build" name="cs445_project">
-    <property environment="env"/>
-    <property name="ECLIPSE_HOME" value="../../../../eclipse/jee-mars/eclipse/"/>
-    <property name="junit.output.dir" value="junit"/>
-    <property name="debuglevel" value="source,lines,vars"/>
-    <property name="target" value="1.7"/>
-    <property name="source" value="1.7"/>
-  	<path id="cobertura.class.path">
-  	    <pathelement location="lib/cobertura.jar" />
-  	    <pathelement location="lib/lib/asm-4.1.jar" />
-  		<pathelement location="lib/lib/asm-util-4.1.jar" />
-  	    <pathelement location="lib/lib/asm-tree-4.1.jar" />
-  		<pathelement location="lib/lib/asm-analysis-4.1.jar" />
-  		<pathelement location="lib/lib/oro-2.0.8.jar" />
-  		<pathelement location="lib/lib/asm-commons-4.1.jar" />
-  	    <pathelement location="lib/lib/log4j-1.2.9.jar" />
-  	</path>
-    <path id="JUnit 4.libraryclasspath">
-        <pathelement location="lib/junit.jar"/>
-        <pathelement location="lib/org.hamcrest.core_1.3.0.v201303031735.jar"/>
-    	<pathelement location="lib/log4j-1.2.jar"/>
-    </path>
-    <path id="cs445_project.classpath">
-        <pathelement location="bin"/>
-        <pathelement location="WebContent/WEB-INF/lib/gson-2.6.2.jar"/>
-        <pathelement location="WebContent/WEB-INF/lib/jersey-bundle-1.19.1.jar"/>
-        <pathelement location="WebContent/WEB-INF/lib/jsr311-api-1.1.1.jar"/>
-        <path refid="JUnit 4.libraryclasspath"/>
-    </path>
-    <target name="init">
-        <mkdir dir="bin"/>
-        <copy includeemptydirs="false" todir="bin">
-            <fileset dir="src">
-                <exclude name="**/*.launch"/>
-                <exclude name="**/*.java"/>
-            </fileset>
-        </copy>
+<project default="create_run_jar" name="Create Runnable Jar for Project cs445_project">
+    <!--this file was created by Eclipse Runnable JAR Export Wizard-->
+    <!--ANT 1.7 is required                                        -->
+    <!--define folder properties-->
+    <property name="dir.buildfile" value="."/>
+    <property name="dir.workspace" value="${dir.buildfile}/.."/>
+    <property name="dir.jarfile" value="${dir.buildfile}"/>
+    <target name="create_run_jar">
+        <jar destfile="${dir.jarfile}/Untitled.jar" filesetmanifest="mergewithoutmain">
+            <manifest>
+                <attribute name="Main-Class" value="main"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+            <fileset dir="${dir.jarfile}/build/classes"/>
+            <zipfileset excludes="META-INF/*.SF" src="/opt/tomcat/lib/tomcat-i18n-es.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/opt/tomcat/lib/tomcat-i18n-ja.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/opt/tomcat/lib/jsp-api.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/opt/tomcat/lib/servlet-api.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/opt/tomcat/lib/annotations-api.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/opt/tomcat/lib/tomcat-coyote.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/opt/tomcat/lib/catalina-ant.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/opt/tomcat/lib/jasper.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/opt/tomcat/lib/tomcat-dbcp.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/opt/tomcat/lib/tomcat-jdbc.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/opt/tomcat/lib/tomcat-util.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/opt/tomcat/lib/jasper-el.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/opt/tomcat/lib/tomcat-util-scan.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/opt/tomcat/lib/tomcat-jni.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/opt/tomcat/lib/catalina-storeconfig.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/opt/tomcat/lib/el-api.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/opt/tomcat/lib/catalina-ha.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/opt/tomcat/lib/tomcat-websocket.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/opt/tomcat/lib/ecj-4.5.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/opt/tomcat/lib/websocket-api.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/opt/tomcat/lib/tomcat-api.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/opt/tomcat/lib/catalina.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/opt/tomcat/lib/tomcat-i18n-fr.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="/opt/tomcat/lib/catalina-tribes.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/WebContent/WEB-INF/lib/gson-2.6.2.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/WebContent/WEB-INF/lib/jersey-bundle-1.19.1.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/WebContent/WEB-INF/lib/jsr311-api-1.1.1.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/junit.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/org.hamcrest.core_1.3.0.v201303031735.jar"/>
+        </jar>
     </target>
-    <target name="clean">
-        <delete dir="bin"/>
-    </target>
-    <target depends="clean" name="cleanall"/>
-    <target depends="build-subprojects,build-project" name="build"/>
-    <target name="build-subprojects"/>
-    <target depends="init" name="build-project">
-        <echo message="${ant.project.name}: ${ant.file}"/>
-        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
-            <src path="src"/>
-            <classpath refid="cs445_project.classpath"/>
-        </javac>
-    </target>
-    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
-    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
-        <copy todir="${ant.library.dir}">
-            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
-        </copy>
-        <unzip dest="${ant.library.dir}">
-            <patternset includes="jdtCompilerAdapter.jar"/>
-            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
-        </unzip>
-    </target>
-    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
-        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
-        <antcall target="build"/>
-    </target>
-              	
-    <taskdef classpathref="cobertura.class.path" resource="tasks.properties" />
-              	
-  	<target name="instrument">
-  	  <cobertura-instrument todir="target/instrumented-classes" datafile="cobertura.ser">
-  	    <fileset dir="bin">
-  	      <include name="**/*.class"/>
-  	    </fileset>
-  	  </cobertura-instrument>
-  	</target>
-              	
-    <target name="ReportManagerTest" depends="instrument">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="edu.iit.cs445.s2016.delectable.report.ReportManagerTest" todir="${junit.output.dir}"/>
-            <classpath refid="cs445_project.classpath"/>
-           	<classpath location="target/instrumented-classes"/>
-        	<classpath location="bin"/>
-        </junit>
-    </target>
-    <target name="OrderItemTest" depends="instrument">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="edu.iit.cs445.s2016.delectable.order.OrderItemTest" todir="${junit.output.dir}"/>
-            <classpath refid="cs445_project.classpath"/>
-            <classpath refid="cs445_project.classpath"/>
-           	<classpath location="target/instrumented-classes"/>
-        </junit>
-    </target>
-    <target name="ReportTypeTest" depends="instrument">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="edu.iit.cs445.s2016.delectable.report.ReportTypeTest" todir="${junit.output.dir}"/>
-            <classpath refid="cs445_project.classpath"/>
-            <classpath refid="cs445_project.classpath"/>
-           	<classpath location="target/instrumented-classes"/>
-        </junit>
-    </target>
-    <target name="SurchargeManagerTest" depends="instrument">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="edu.iit.cs445.s2016.delectable.surcharge.SurchargeManagerTest" todir="${junit.output.dir}"/>
-            <classpath refid="cs445_project.classpath"/>
-            <classpath refid="cs445_project.classpath"/>
-           	<classpath location="target/instrumented-classes"/>
-        </junit>
-    </target>
-    <target name="src (1)" depends="instrument">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="edu.iit.cs445.s2016.delectable.CommonTest" todir="${junit.output.dir}"/>
-            <test name="edu.iit.cs445.s2016.delectable.GsonStrategies.CreateStrategyTest" todir="${junit.output.dir}"/>
-            <test name="edu.iit.cs445.s2016.delectable.GsonStrategies.ListReportStrategyTest" todir="${junit.output.dir}"/>
-            <test name="edu.iit.cs445.s2016.delectable.GsonStrategies.ListStrategyTest" todir="${junit.output.dir}"/>
-            <test name="edu.iit.cs445.s2016.delectable.REST_AbstractControllerTest" todir="${junit.output.dir}"/>
-            <test name="edu.iit.cs445.s2016.delectable.customer.CustomerManagerTest" todir="${junit.output.dir}"/>
-            <test name="edu.iit.cs445.s2016.delectable.customer.GenericCustomerTest" todir="${junit.output.dir}"/>
-            <test name="edu.iit.cs445.s2016.delectable.menu.CategoryTest" todir="${junit.output.dir}"/>
-            <test name="edu.iit.cs445.s2016.delectable.menu.MenuItemTest" todir="${junit.output.dir}"/>
-            <test name="edu.iit.cs445.s2016.delectable.menu.MenuManagerTest" todir="${junit.output.dir}"/>
-            <test name="edu.iit.cs445.s2016.delectable.order.OrderItemTest" todir="${junit.output.dir}"/>
-            <test name="edu.iit.cs445.s2016.delectable.order.OrderManagerTest" todir="${junit.output.dir}"/>
-            <test name="edu.iit.cs445.s2016.delectable.order.OrderTest" todir="${junit.output.dir}"/>
-            <test name="edu.iit.cs445.s2016.delectable.report.ReportManagerTest" todir="${junit.output.dir}"/>
-            <test name="edu.iit.cs445.s2016.delectable.report.ReportTypeTest" todir="${junit.output.dir}"/>
-            <test name="edu.iit.cs445.s2016.delectable.surcharge.SurchargeManagerTest" todir="${junit.output.dir}"/>
-            <test name="edu.iit.cs445.s2016.delectable.surcharge.SurchargeTest" todir="${junit.output.dir}"/>
-            <classpath refid="cs445_project.classpath"/>
-            <classpath refid="cs445_project.classpath"/>
-           	<classpath location="target/instrumented-classes"/>
-        </junit>
-    </target>
-    <target name="cs445_project" depends="instrument">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="edu.iit.cs445.s2016.delectable.CommonTest" todir="${junit.output.dir}"/>
-            <test name="edu.iit.cs445.s2016.delectable.GsonStrategies.CreateStrategyTest" todir="${junit.output.dir}"/>
-            <test name="edu.iit.cs445.s2016.delectable.GsonStrategies.ListReportStrategyTest" todir="${junit.output.dir}"/>
-            <test name="edu.iit.cs445.s2016.delectable.GsonStrategies.ListStrategyTest" todir="${junit.output.dir}"/>
-            <test name="edu.iit.cs445.s2016.delectable.REST_AbstractControllerTest" todir="${junit.output.dir}"/>
-            <test name="edu.iit.cs445.s2016.delectable.customer.CustomerManagerTest" todir="${junit.output.dir}"/>
-            <test name="edu.iit.cs445.s2016.delectable.customer.GenericCustomerTest" todir="${junit.output.dir}"/>
-            <test name="edu.iit.cs445.s2016.delectable.menu.CategoryTest" todir="${junit.output.dir}"/>
-            <test name="edu.iit.cs445.s2016.delectable.menu.MenuItemTest" todir="${junit.output.dir}"/>
-            <test name="edu.iit.cs445.s2016.delectable.menu.MenuManagerTest" todir="${junit.output.dir}"/>
-            <test name="edu.iit.cs445.s2016.delectable.order.OrderItemTest" todir="${junit.output.dir}"/>
-            <test name="edu.iit.cs445.s2016.delectable.order.OrderManagerTest" todir="${junit.output.dir}"/>
-            <test name="edu.iit.cs445.s2016.delectable.order.OrderTest" todir="${junit.output.dir}"/>
-            <test name="edu.iit.cs445.s2016.delectable.report.ReportManagerTest" todir="${junit.output.dir}"/>
-            <test name="edu.iit.cs445.s2016.delectable.report.ReportTypeTest" todir="${junit.output.dir}"/>
-            <test name="edu.iit.cs445.s2016.delectable.surcharge.SurchargeManagerTest" todir="${junit.output.dir}"/>
-            <test name="edu.iit.cs445.s2016.delectable.surcharge.SurchargeTest" todir="${junit.output.dir}"/>
-            <classpath refid="cs445_project.classpath"/>
-            <classpath refid="cs445_project.classpath"/>
-           	<classpath location="target/instrumented-classes"/>
-        </junit>
-    </target>
-    <target name="OrderManagerTest" depends="instrument">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="edu.iit.cs445.s2016.delectable.order.OrderManagerTest" todir="${junit.output.dir}"/>
-            <classpath refid="cs445_project.classpath"/>
-            <classpath refid="cs445_project.classpath"/>
-           	<classpath location="target/instrumented-classes"/>
-        </junit>
-    </target>
-    <target name="SurchargeTest" depends="instrument">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="edu.iit.cs445.s2016.delectable.surcharge.SurchargeTest" todir="${junit.output.dir}"/>
-            <classpath refid="cs445_project.classpath"/>
-            <classpath refid="cs445_project.classpath"/>
-           	<classpath location="target/instrumented-classes"/>
-        </junit>
-    </target>
-    <target name="CommonTest" depends="instrument">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="edu.iit.cs445.s2016.delectable.CommonTest" todir="${junit.output.dir}"/>
-            <classpath refid="cs445_project.classpath"/>
-        	<classpath location="lib/cobertura*.jar"/>
-        	<classpath location="target/instrumented-classes"/>
-        </junit>
-    </target>
-    <target name="junitreport">
-        <junitreport todir="${junit.output.dir}">
-            <fileset dir="${junit.output.dir}">
-                <include name="TEST-*.xml"/>
-            </fileset>
-            <report format="frames" todir="${junit.output.dir}"/>
-        </junitreport>
-        <cobertura-report format="xml" srcdir="src" destdir="${junit.output.dir}/d" datafile="cobertura.ser" />
-
-        <cobertura-report format="html" srcdir="src" destdir="${junit.output.dir}/d" datafile="cobertura.ser" />
-
-    </target>
-              
 </project>
