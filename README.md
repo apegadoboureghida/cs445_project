@@ -40,6 +40,9 @@ ant
 ant -f buildWar.xml deploy
 ```
 
+> Note: The project is going to be deploy in the root folder of Tomcat and port 8080
+> (ex: http://localhost:8080/menu) 
+
 License
 ----
 
@@ -50,3 +53,5 @@ MIT
 
    [Junit4]: <http://junit.org/junit4/>
    [Jcov]: <https://wiki.openjdk.java.net/display/CodeTools/jcov>
+
+
