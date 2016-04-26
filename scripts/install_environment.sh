@@ -11,3 +11,5 @@ unzip apache-tomcat-8.0.33.zip
 sudo mv apache-tomcat-8.0.33 /opt/tomcat
 chmod 744 /opt/tomcat/bin/*sh
 rm apache-tomcat-8.0.33.zip
+
+sudo apt-get install ant
