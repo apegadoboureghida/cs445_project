@@ -41,35 +41,7 @@ public class main {
 			System.out.println("Test: OK");			
 
 		}
-		result = junit.run(CustomerManagerTest.class);
-		ignore += result.getIgnoreCount();
-		run += result.getRunCount();
-		failure += result.getFailureCount();
-		
-		if(result.getFailureCount()> 0)
-		{
-			for(Failure fail: result.getFailures()){
-				System.out.println("Test: FAIL ->"+fail.getMessage() + fail.getException().getStackTrace().toString());			
-				}
-		}else{
-			System.out.println("Test: OK");			
-
-		}
-		result = junit.run(CustomerManagerTest.class);
-		ignore += result.getIgnoreCount();
-		run += result.getRunCount();
-		failure += result.getFailureCount();
-		
-		if(result.getFailureCount()> 0)
-		{
-			for(Failure fail: result.getFailures()){
-				System.out.println("Test: FAIL ->"+fail.getMessage());			
-				}
-		}else{
-			System.out.println("Test: OK");			
-
-		}
-		
+	
 		result = junit.run(GenericCustomerTest.class);
 		ignore += result.getIgnoreCount();
 		run += result.getRunCount();
@@ -85,6 +57,20 @@ public class main {
 
 		}
 		
+		result = junit.run(CustomerManagerTest.class);
+		ignore += result.getIgnoreCount();
+		run += result.getRunCount();
+		failure += result.getFailureCount();
+		
+		if(result.getFailureCount()> 0)
+		{
+			for(Failure fail: result.getFailures()){
+				System.out.println("Test: FAIL ->"+fail.getMessage());			
+				}
+		}else{
+			System.out.println("Test: OK");			
+
+		}
 		
 		result = junit.run(CreateStrategyTest.class);
 		ignore += result.getIgnoreCount();
