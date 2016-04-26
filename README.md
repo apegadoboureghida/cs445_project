@@ -4,8 +4,8 @@
 Run install_environment.sh and follow the instructions.
 This script is going to install:
     
-  - Java8
-  - Tomcat
+  - [Oracle Java8]
+  - [Apache Tomcat]
 
 ``` 
 sh scripts/install_environment.sh
@@ -46,6 +46,9 @@ ant -f buildWar.xml deploy
 
 > This create two .war files one in the main folder of the project and another one (a copy) on tomcat folder.
 
+## Repository
+> This repository is stored in [Github]: https://github.com/apegadoboureghida/cs445_project/
+
 License
 ----
 
@@ -56,5 +59,8 @@ MIT
 
    [Junit4]: <http://junit.org/junit4/>
    [Jcov]: <https://wiki.openjdk.java.net/display/CodeTools/jcov>
+   [Github]: <https://github.com>
+   [oracle java8]: <http://www.oracle.com/technetwork/java/javase/overview/java8-2100321.html>
+   [apache tomcat]: <http://tomcat.apache.org/>
 
 
