@@ -15,6 +15,7 @@ This script generate the .class files from source.
 ``` 
 ant
 ```
+> To create the .war file go to Deploy
 
 ## Run Test and Converture test
 
@@ -42,6 +43,8 @@ ant -f buildWar.xml deploy
 
 > Note: The project is going to be deploy in the root folder of Tomcat and port 8080
 > (ex: http://localhost:8080/menu) 
+
+> This create two .war files one in the main folder of the project and another one (a copy) on tomcat folder.
 
 License
 ----
