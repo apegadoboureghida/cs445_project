@@ -13,3 +13,5 @@ chmod 744 /opt/tomcat/bin/*sh
 rm apache-tomcat-8.0.33.zip
 
 sudo apt-get install ant
+
+sudo rm -r /opt/tomcat/webapps/ROOT

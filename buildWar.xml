@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <project name="Deploy From Eclipse to Tomcat" basedir=".">
-<property name="warfile" value="cs445"/>
+<property name="warfile" value="ROOT.war"/>
 <target name="unpack">
 <unwar src="${warfile}.war" dest="${warfile}" />
 </target>
