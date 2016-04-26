@@ -46,6 +46,20 @@ ant -f buildWar.xml deploy
 
 > This create two .war files one in the main folder of the project and another one (a copy) on tomcat folder.
 
+> Remember to have Tomcat running.
+
+## Tomcat
+
+Run Tomcat
+``` 
+/opt/tomcat/bin/startup.sh
+```
+
+Shutdown Tomcat
+``` 
+/opt/tomcat/bin/shutdown.sh
+```
+
 ## Repository
 > This repository is stored in [Github]: https://github.com/apegadoboureghida/cs445_project/
 
