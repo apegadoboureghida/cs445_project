@@ -40,7 +40,7 @@ public class REST_report_controller extends REST_AbstractController{
 				gson=new GsonBuilder()
 					.setExclusionStrategies(new OrderDeliverReportStrategy())
 					.create();
-				report = super.bri.getReport801();
+				report = super.bri.getReportToday();
 				break;
 			case 802:
 				report = super.bri.getReport802();

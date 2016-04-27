@@ -36,10 +36,14 @@ public class ReportManager implements BoundaryReportInterface {
 	}
 
 	@Override
-	public ReportType getReport801(){
+	public ReportType getReportToday(){
 		reportTypes.remove(801);
 		reportTypes.put(801,new ReportType(801,"Orders to deliver today"));
-		reportTypes.get(801).setOrders(orders.get(Common.todayAsString()));
+		List<Order> ordersAux = orders.get(Common.todayAsString());
+		
+		if(ordersAux == null) 
+			ordersAux = new ArrayList<Order>();
+		reportTypes.get(801).setOrders(ordersAux);
 
 		return reportTypes.get(801);
 	}
@@ -60,7 +64,6 @@ public class ReportManager implements BoundaryReportInterface {
 	@Override
 	public ReportType getReport803(){
 		reportTypes.put(803,new ReportType(803,"Revenue report"));
-		reportTypes.get(803).setOrders(orders.get(Common.tomorrowAsString()));
 		int placed = 0;
 		int cancelled = 0;
 		int open = 0;
@@ -89,6 +92,7 @@ public class ReportManager implements BoundaryReportInterface {
 		reportTypes.get(803).setOrdersOpen(open);
 		reportTypes.get(803).setFoodRevenuen(foodRevenue);
 		reportTypes.get(803).setSurchargeRevenue(surchargeRevenue);	
+		reportTypes.get(803).setOrders(null);
 		
 		return reportTypes.get(803);
 	}
@@ -96,7 +100,6 @@ public class ReportManager implements BoundaryReportInterface {
 	@Override
 	public ReportType getReport804(){
 		reportTypes.put(804,new ReportType(804,"Orders delivery report"));
-		reportTypes.get(804).setOrders(orders.get(Common.tomorrowAsString()));
 		double foodRevenueD = 0;
 		double surchargeRevenueD = 0;
 		int placedD = 0;
@@ -115,7 +118,7 @@ public class ReportManager implements BoundaryReportInterface {
 		reportTypes.get(804).setOrdersPlaced(placedD);
 		reportTypes.get(804).setFoodRevenuen(foodRevenueD);
 		reportTypes.get(804).setSurchargeRevenue(surchargeRevenueD);	
-		
+		reportTypes.get(803).setOrders(null);
 		return reportTypes.get(804);
 	}
 	

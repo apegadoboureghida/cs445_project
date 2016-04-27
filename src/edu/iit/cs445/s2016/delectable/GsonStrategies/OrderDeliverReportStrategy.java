@@ -9,7 +9,7 @@ public class OrderDeliverReportStrategy implements ExclusionStrategy{
 
 	@Override
 	public boolean shouldSkipField(FieldAttributes arg0) {
-		String[] alloud = {"id","name"};
+		String[] alloud = {"id","name","orders","amount","surcharge","status","orderDate","deliveryDate","personal_info","deliveryAddress","note","orderDetail"};
 		
 		return !(Arrays.asList(alloud)).contains(arg0.getName()) ;
 	}

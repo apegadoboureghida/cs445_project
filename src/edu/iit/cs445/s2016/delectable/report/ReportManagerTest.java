@@ -29,12 +29,12 @@ public class ReportManagerTest {
 		order.setDeliveryDate(new Date());
 		manager.addOrder(order);
 		
-		assertTrue(manager.getReport801().orders().size() == 1);
+		assertTrue(manager.getReportToday().orders().size() == 1);
 	}
 	
 	@Test
 	public void testGetRerport() {
-		assertTrue(manager.getReport801().id() == 801);
+		assertTrue(manager.getReportToday().id() == 801);
 		assertTrue(manager.getReport802().id() == 802);
 		assertTrue(manager.getReport803().id() == 803);
 		assertTrue(manager.getReport804().id() == 804);

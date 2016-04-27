@@ -12,7 +12,7 @@ public class OrderManager implements BoundaryOrderInterface{
 	private static Map<Integer,Order> orders = new HashMap<Integer,Order>();
 	
 	@Override
-	public Order createOrder(Order entity) {		
+	public Order createOrder(Order entity) {
 		orders.put(entity.getID(),entity);
 		
 		return entity;

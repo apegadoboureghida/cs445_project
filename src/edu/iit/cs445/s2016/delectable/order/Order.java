@@ -79,8 +79,7 @@ public class Order {
     }
     
     public void setCustomer(GenericCustomer customer){
-    	this.customer = customer;
-    }
+    	this.customer = customer;    }
     
     public boolean matchesId(int mid) {
         return(mid == this.id);
