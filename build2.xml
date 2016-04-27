@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="cs445_project">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="../../../../eclipse/jee-mars/eclipse/"/>
+    <property name="junit.output.dir" value="junit"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.8"/>
+    <property name="source" value="1.8"/>
+    <path id="Apache Tomcat v8.0 [Apache Tomcat v8.0].libraryclasspath">
+        <pathelement location="/opt/tomcat/lib/tomcat-i18n-es.jar"/>
+        <pathelement location="/opt/tomcat/lib/tomcat-i18n-ja.jar"/>
+        <pathelement location="/opt/tomcat/lib/jsp-api.jar"/>
+        <pathelement location="/opt/tomcat/lib/servlet-api.jar"/>
+        <pathelement location="/opt/tomcat/lib/annotations-api.jar"/>
+        <pathelement location="/opt/tomcat/lib/tomcat-coyote.jar"/>
+        <pathelement location="/opt/tomcat/lib/catalina-ant.jar"/>
+        <pathelement location="/opt/tomcat/lib/jasper.jar"/>
+        <pathelement location="/opt/tomcat/lib/tomcat-dbcp.jar"/>
+        <pathelement location="/opt/tomcat/lib/tomcat-jdbc.jar"/>
+        <pathelement location="/opt/tomcat/lib/tomcat-util.jar"/>
+        <pathelement location="/opt/tomcat/lib/jasper-el.jar"/>
+        <pathelement location="/opt/tomcat/lib/tomcat-util-scan.jar"/>
+        <pathelement location="/opt/tomcat/lib/tomcat-jni.jar"/>
+        <pathelement location="/opt/tomcat/lib/catalina-storeconfig.jar"/>
+        <pathelement location="/opt/tomcat/lib/el-api.jar"/>
+        <pathelement location="/opt/tomcat/lib/catalina-ha.jar"/>
+        <pathelement location="/opt/tomcat/lib/tomcat-websocket.jar"/>
+        <pathelement location="/opt/tomcat/lib/ecj-4.5.jar"/>
+        <pathelement location="/opt/tomcat/lib/websocket-api.jar"/>
+        <pathelement location="/opt/tomcat/lib/tomcat-api.jar"/>
+        <pathelement location="/opt/tomcat/lib/catalina.jar"/>
+        <pathelement location="/opt/tomcat/lib/tomcat-i18n-fr.jar"/>
+        <pathelement location="/opt/tomcat/lib/catalina-tribes.jar"/>
+    </path>
+    <path id="Web App Libraries.libraryclasspath">
+        <pathelement location="WebContent/WEB-INF/lib/gson-2.6.2.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/jersey-bundle-1.19.1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/jsr311-api-1.1.1.jar"/>
+    </path>
+    <path id="EAR Libraries.libraryclasspath"/>
+    <path id="cs445_project.classpath">
+        <pathelement location="build/classes"/>
+        <path refid="Apache Tomcat v8.0 [Apache Tomcat v8.0].libraryclasspath"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <path refid="EAR Libraries.libraryclasspath"/>
+        <pathelement location="WebContent/WEB-INF/lib/gson-2.6.2.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/jersey-bundle-1.19.1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/jsr311-api-1.1.1.jar"/>
+        <pathelement location="lib/junit.jar"/>
+        <pathelement location="lib/org.hamcrest.core_1.3.0.v201303031735.jar"/>
+        <pathelement location="jcov.jar"/>
+    </path>
+    <path id="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER.libraryclasspath"/>
+    <path id="run.ReportManagerTest.classpath">
+        <path refid="cs445_project.classpath"/>
+        <path refid="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER.libraryclasspath"/>
+    </path>
+    <path id="run.OrderItemTest.classpath">
+        <path refid="cs445_project.classpath"/>
+        <path refid="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER.libraryclasspath"/>
+    </path>
+    <path id="run.ReportTypeTest.classpath">
+        <path refid="cs445_project.classpath"/>
+        <path refid="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER.libraryclasspath"/>
+    </path>
+    <path id="run.SurchargeManagerTest.classpath">
+        <path refid="cs445_project.classpath"/>
+        <path refid="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER.libraryclasspath"/>
+    </path>
+    <path id="run.CommonTest.classpath">
+        <path refid="cs445_project.classpath"/>
+        <path refid="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER.libraryclasspath"/>
+    </path>
+    <path id="run.src (1).classpath">
+        <path refid="cs445_project.classpath"/>
+        <path refid="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER.libraryclasspath"/>
+    </path>
+    <path id="run.cs445_project.classpath">
+        <path refid="cs445_project.classpath"/>
+        <path refid="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER.libraryclasspath"/>
+    </path>
+    <path id="run.OrderManagerTest.classpath">
+        <path refid="cs445_project.classpath"/>
+        <path refid="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER.libraryclasspath"/>
+    </path>
+    <path id="run.SurchargeTest.classpath">
+        <path refid="cs445_project.classpath"/>
+        <path refid="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER.libraryclasspath"/>
+    </path>
+    <target name="init">
+        <mkdir dir="build/classes"/>
+        <copy includeemptydirs="false" todir="build/classes">
+            <fileset dir="src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="build/classes"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="build/classes" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="cs445_project.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="GenericCustomerTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.iit.cs445.s2016.delectable.customer.GenericCustomerTest" todir="${junit.output.dir}"/>
+            <classpath refid="cs445_project.classpath"/>
+        </junit>
+    </target>
+    <target name="ReportManagerTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.iit.cs445.s2016.delectable.report.ReportManagerTest" todir="${junit.output.dir}"/>
+            <classpath refid="run.ReportManagerTest.classpath"/>
+        </junit>
+    </target>
+    <target name="OrderItemTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.iit.cs445.s2016.delectable.order.OrderItemTest" todir="${junit.output.dir}"/>
+            <classpath refid="run.OrderItemTest.classpath"/>
+        </junit>
+    </target>
+    <target name="ReportTypeTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.iit.cs445.s2016.delectable.report.ReportTypeTest" todir="${junit.output.dir}"/>
+            <classpath refid="run.ReportTypeTest.classpath"/>
+        </junit>
+    </target>
+    <target name="edu.iit.cs445.s2016.delectable">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.iit.cs445.s2016.delectable.REST_AbstractControllerTest" todir="${junit.output.dir}"/>
+            <classpath refid="cs445_project.classpath"/>
+        </junit>
+    </target>
+    <target name="SurchargeManagerTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.iit.cs445.s2016.delectable.surcharge.SurchargeManagerTest" todir="${junit.output.dir}"/>
+            <classpath refid="run.SurchargeManagerTest.classpath"/>
+        </junit>
+    </target>
+    <target name="main">
+        <java classname="edu.iit.cs445.s2016.delectable.main" failonerror="true" fork="yes">
+            <classpath refid="cs445_project.classpath"/>
+        </java>
+    </target>
+    <target name="edu.iit.cs445.s2016.delectable.customer">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.iit.cs445.s2016.delectable.customer.CustomerManagerTest" todir="${junit.output.dir}"/>
+            <test name="edu.iit.cs445.s2016.delectable.customer.GenericCustomerTest" todir="${junit.output.dir}"/>
+            <classpath refid="cs445_project.classpath"/>
+        </junit>
+    </target>
+    <target name="CustomerManagerTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.iit.cs445.s2016.delectable.customer.CustomerManagerTest" todir="${junit.output.dir}"/>
+            <classpath refid="cs445_project.classpath"/>
+        </junit>
+    </target>
+    <target name="CommonTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.iit.cs445.s2016.delectable.CommonTest" todir="${junit.output.dir}"/>
+            <classpath refid="run.CommonTest.classpath"/>
+        </junit>
+    </target>
+    <target name="src (1)">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.iit.cs445.s2016.delectable.GsonStrategies.CreateStrategyTest" todir="${junit.output.dir}"/>
+            <test name="edu.iit.cs445.s2016.delectable.GsonStrategies.ListReportStrategyTest" todir="${junit.output.dir}"/>
+            <test name="edu.iit.cs445.s2016.delectable.GsonStrategies.ListStrategyTest" todir="${junit.output.dir}"/>
+            <test name="edu.iit.cs445.s2016.delectable.REST_AbstractControllerTest" todir="${junit.output.dir}"/>
+            <test name="edu.iit.cs445.s2016.delectable.customer.CustomerManagerTest" todir="${junit.output.dir}"/>
+            <test name="edu.iit.cs445.s2016.delectable.customer.GenericCustomerTest" todir="${junit.output.dir}"/>
+            <test name="edu.iit.cs445.s2016.delectable.menu.CategoryTest" todir="${junit.output.dir}"/>
+            <test name="edu.iit.cs445.s2016.delectable.menu.MenuItemTest" todir="${junit.output.dir}"/>
+            <test name="edu.iit.cs445.s2016.delectable.menu.MenuManagerTest" todir="${junit.output.dir}"/>
+            <test name="edu.iit.cs445.s2016.delectable.order.OrderItemTest" todir="${junit.output.dir}"/>
+            <test name="edu.iit.cs445.s2016.delectable.order.OrderManagerTest" todir="${junit.output.dir}"/>
+            <test name="edu.iit.cs445.s2016.delectable.order.OrderTest" todir="${junit.output.dir}"/>
+            <test name="edu.iit.cs445.s2016.delectable.report.ReportManagerTest" todir="${junit.output.dir}"/>
+            <test name="edu.iit.cs445.s2016.delectable.report.ReportTypeTest" todir="${junit.output.dir}"/>
+            <test name="edu.iit.cs445.s2016.delectable.surcharge.SurchargeManagerTest" todir="${junit.output.dir}"/>
+            <test name="edu.iit.cs445.s2016.delectable.surcharge.SurchargeTest" todir="${junit.output.dir}"/>
+            <classpath refid="run.src (1).classpath"/>
+        </junit>
+    </target>
+    <target name="CategoryTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.iit.cs445.s2016.delectable.menu.CategoryTest" todir="${junit.output.dir}"/>
+            <classpath refid="cs445_project.classpath"/>
+        </junit>
+    </target>
+    <target name="cs445_project">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.iit.cs445.s2016.delectable.GsonStrategies.CreateStrategyTest" todir="${junit.output.dir}"/>
+            <test name="edu.iit.cs445.s2016.delectable.GsonStrategies.ListReportStrategyTest" todir="${junit.output.dir}"/>
+            <test name="edu.iit.cs445.s2016.delectable.GsonStrategies.ListStrategyTest" todir="${junit.output.dir}"/>
+            <test name="edu.iit.cs445.s2016.delectable.REST_AbstractControllerTest" todir="${junit.output.dir}"/>
+            <test name="edu.iit.cs445.s2016.delectable.customer.CustomerManagerTest" todir="${junit.output.dir}"/>
+            <test name="edu.iit.cs445.s2016.delectable.customer.GenericCustomerTest" todir="${junit.output.dir}"/>
+            <test name="edu.iit.cs445.s2016.delectable.menu.CategoryTest" todir="${junit.output.dir}"/>
+            <test name="edu.iit.cs445.s2016.delectable.menu.MenuItemTest" todir="${junit.output.dir}"/>
+            <test name="edu.iit.cs445.s2016.delectable.menu.MenuManagerTest" todir="${junit.output.dir}"/>
+            <test name="edu.iit.cs445.s2016.delectable.order.OrderItemTest" todir="${junit.output.dir}"/>
+            <test name="edu.iit.cs445.s2016.delectable.order.OrderManagerTest" todir="${junit.output.dir}"/>
+            <test name="edu.iit.cs445.s2016.delectable.order.OrderTest" todir="${junit.output.dir}"/>
+            <test name="edu.iit.cs445.s2016.delectable.report.ReportManagerTest" todir="${junit.output.dir}"/>
+            <test name="edu.iit.cs445.s2016.delectable.report.ReportTypeTest" todir="${junit.output.dir}"/>
+            <test name="edu.iit.cs445.s2016.delectable.surcharge.SurchargeManagerTest" todir="${junit.output.dir}"/>
+            <test name="edu.iit.cs445.s2016.delectable.surcharge.SurchargeTest" todir="${junit.output.dir}"/>
+            <classpath refid="run.cs445_project.classpath"/>
+        </junit>
+    </target>
+    <target name="edu.iit.cs445.s2016.delectable.order">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.iit.cs445.s2016.delectable.order.OrderItemTest" todir="${junit.output.dir}"/>
+            <test name="edu.iit.cs445.s2016.delectable.order.OrderManagerTest" todir="${junit.output.dir}"/>
+            <test name="edu.iit.cs445.s2016.delectable.order.OrderTest" todir="${junit.output.dir}"/>
+            <classpath refid="cs445_project.classpath"/>
+        </junit>
+    </target>
+    <target name="OrderManagerTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.iit.cs445.s2016.delectable.order.OrderManagerTest" todir="${junit.output.dir}"/>
+            <classpath refid="run.OrderManagerTest.classpath"/>
+        </junit>
+    </target>
+    <target name="edu.iit.cs445.s2016.delectable.report">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.iit.cs445.s2016.delectable.report.ReportManagerTest" todir="${junit.output.dir}"/>
+            <test name="edu.iit.cs445.s2016.delectable.report.ReportTypeTest" todir="${junit.output.dir}"/>
+            <classpath refid="cs445_project.classpath"/>
+        </junit>
+    </target>
+    <target name="edu.iit.cs445.s2016.delectable.surcharge">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.iit.cs445.s2016.delectable.surcharge.SurchargeManagerTest" todir="${junit.output.dir}"/>
+            <test name="edu.iit.cs445.s2016.delectable.surcharge.SurchargeTest" todir="${junit.output.dir}"/>
+            <classpath refid="cs445_project.classpath"/>
+        </junit>
+    </target>
+    <target name="SurchargeTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.iit.cs445.s2016.delectable.surcharge.SurchargeTest" todir="${junit.output.dir}"/>
+            <classpath refid="run.SurchargeTest.classpath"/>
+        </junit>
+    </target>
+    <target name="edu.iit.cs445.s2016.delectable.GsonStrategies">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.iit.cs445.s2016.delectable.GsonStrategies.CreateStrategyTest" todir="${junit.output.dir}"/>
+            <test name="edu.iit.cs445.s2016.delectable.GsonStrategies.ListReportStrategyTest" todir="${junit.output.dir}"/>
+            <test name="edu.iit.cs445.s2016.delectable.GsonStrategies.ListStrategyTest" todir="${junit.output.dir}"/>
+            <classpath refid="cs445_project.classpath"/>
+        </junit>
+    </target>
+    <target name="main (1)">
+        <java classname="main" failonerror="true" fork="yes">
+            <classpath refid="cs445_project.classpath"/>
+        </java>
+    </target>
+    <target name="REST_AbstractControllerTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.iit.cs445.s2016.delectable.REST_AbstractControllerTest" todir="${junit.output.dir}"/>
+            <classpath refid="cs445_project.classpath"/>
+        </junit>
+    </target>
+    <target name="edu.iit.cs445.s2016.delectable.menu">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="edu.iit.cs445.s2016.delectable.menu.CategoryTest" todir="${junit.output.dir}"/>
+            <test name="edu.iit.cs445.s2016.delectable.menu.MenuItemTest" todir="${junit.output.dir}"/>
+            <test name="edu.iit.cs445.s2016.delectable.menu.MenuManagerTest" todir="${junit.output.dir}"/>
+            <classpath refid="cs445_project.classpath"/>
+        </junit>
+    </target>
+    <target name="junitreport">
+        <junitreport todir="${junit.output.dir}">
+            <fileset dir="${junit.output.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${junit.output.dir}"/>
+        </junitreport>
+    </target>
+</project>
