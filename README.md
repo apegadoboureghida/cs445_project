@@ -36,9 +36,7 @@ Once Jcov have already finished, one new folder is created. To check this test o
 To deploy the project run:
 
 ``` 
-ant clean
-ant
-ant -f buildWar.xml deploy
+sh scripts/deploy.sh
 ```
 
 > Note: The project is going to be deploy in the root folder of Tomcat and port 8080
