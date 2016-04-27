@@ -1,5 +1,6 @@
 package edu.iit.cs445.s2016.delectable.report;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,19 +21,20 @@ public class ReportType {
 	@SerializedName("end_date")
 	private Date endDate;
 	@SerializedName("orders_placed")
-	private int ordersPlaced;
+	private Integer ordersPlaced;
 	@SerializedName("orders_cancelled")
-	private int ordersCancelled;
+	private Integer ordersCancelled;
 	@SerializedName("orders_open")
-	private int ordersOpen;
+	private Integer ordersOpen;
 	@SerializedName("food_revenue")
-	private double foodRevenue;
+	private Double foodRevenue;
 	@SerializedName("surcharge_revenue")
-	private double surchargeRevenue;
+	private Double surchargeRevenue;
 	
 	public ReportType(int id,String name){
 		this.id = id;
 		this.name = name;
+		orders = new ArrayList<Order>();
 	}
 	
 	public int id(){
@@ -55,23 +57,23 @@ public class ReportType {
 		return this.endDate;
 	}
 	
-	public int ordersPlaced(){
+	public Integer ordersPlaced(){
 		return this.ordersPlaced;
 	}
 	
-	public int ordersCancelled(){
+	public Integer ordersCancelled(){
 		return this.ordersCancelled;
 	}
 	
-	public int ordersOpen(){
+	public Integer ordersOpen(){
 		return this.ordersOpen;
 	}
 	
-	public double foodRevenue(){
+	public Double foodRevenue(){
 		return this.foodRevenue;
 	}
 	
-	public double surchargeRevenue(){
+	public Double surchargeRevenue(){
 		return this.surchargeRevenue;
 	}
 	

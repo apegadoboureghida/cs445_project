@@ -9,5 +9,8 @@ public interface BoundaryReportInterface {
 	
 	void addOrder(Order order);
 	Collection<ReportType> getAllReports();
-	ReportType getRerport(int rid);
+	public ReportType getReport801();
+	public ReportType getReport802();
+	public ReportType getReport803();
+	public ReportType getReport804();
 }

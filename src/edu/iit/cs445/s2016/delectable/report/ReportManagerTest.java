@@ -29,15 +29,15 @@ public class ReportManagerTest {
 		order.setDeliveryDate(new Date());
 		manager.addOrder(order);
 		
-		assertTrue(manager.getRerport(801).orders().size() == 1);
+		assertTrue(manager.getReport801().orders().size() == 1);
 	}
 	
 	@Test
 	public void testGetRerport() {
-		assertTrue(manager.getRerport(801).id() == 801);
-		assertTrue(manager.getRerport(802).id() == 802);
-		assertTrue(manager.getRerport(803).id() == 803);
-		assertTrue(manager.getRerport(804).id() == 804);
+		assertTrue(manager.getReport801().id() == 801);
+		assertTrue(manager.getReport802().id() == 802);
+		assertTrue(manager.getReport803().id() == 803);
+		assertTrue(manager.getReport804().id() == 804);
 
 	}
 

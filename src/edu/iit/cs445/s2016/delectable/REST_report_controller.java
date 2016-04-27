@@ -5,9 +5,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import edu.iit.cs445.s2016.delectable.GsonStrategies.ListReportStrategy;
+import edu.iit.cs445.s2016.delectable.GsonStrategies.OrderDeliverReportStrategy;
 import edu.iit.cs445.s2016.delectable.report.ReportType;
 
-import javax.annotation.PostConstruct;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 
@@ -29,16 +29,40 @@ public class REST_report_controller extends REST_AbstractController{
     @Path("{rid}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getSpecificOrder(@PathParam("rid") int rid) {    	
+    public Response getSpecificOrder(@PathParam("rid") int rid) {    
         Gson gson = new GsonBuilder()
-          	     .create();
+        	     .create();
+
+        ReportType report = null;
         
-        ReportType report = super.bri.getRerport(rid);
+        switch (rid) {
+			case 801:
+				gson=new GsonBuilder()
+					.setExclusionStrategies(new OrderDeliverReportStrategy())
+					.create();
+				report = super.bri.getReport801();
+				break;
+			case 802:
+				report = super.bri.getReport802();
+				gson=new GsonBuilder()
+						.setExclusionStrategies(new OrderDeliverReportStrategy())
+						.create();
+				break;
+			case 803:
+				report = super.bri.getReport803();
+				break;
+			case 804:
+				report = super.bri.getReport804();
+				break;
+			default:
+				break;
+		}
+
         
         if(report == null){
         	Response.status(Response.Status.NOT_FOUND).build();
         }
-        String s = gson.toJson(super.bri.getRerport(rid));
+        String s = gson.toJson(report);
         
         
         return Response.status(Response.Status.OK).entity(s).build();

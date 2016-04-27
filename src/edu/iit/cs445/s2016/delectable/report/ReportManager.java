@@ -36,86 +36,89 @@ public class ReportManager implements BoundaryReportInterface {
 	}
 
 	@Override
-	public ReportType getRerport(int rid) {
-		
-		switch(rid){
-			case 801:
-				reportTypes.put(801,new ReportType(801,"Orders to deliver today"));
-				reportTypes.get(rid).setOrders(orders.get(Common.todayAsString()));
-				return reportTypes.get(rid);
-			case 802:
-				reportTypes.put(802,new ReportType(802,"Orders to deliver tomorrow"));
-				List<Order> ordersAux = new ArrayList<Order>();
-				if(orders.get(Common.tomorrowAsString()) != null){
-					for(Order tmp :orders.get(Common.tomorrowAsString()) ){
-						if(tmp.status()== OrderStatus.OPEN){
-							ordersAux.add(tmp);
-						}
-					}
-				}
-				reportTypes.get(rid).setOrders(ordersAux);
-				return reportTypes.get(rid);
-			case 803:
-				reportTypes.put(803,new ReportType(803,"Revenue report"));
-				reportTypes.get(rid).setOrders(orders.get(Common.tomorrowAsString()));
-				int placed = 0;
-				int cancelled = 0;
-				int open = 0;
-				double foodRevenue = 0;
-				double surchargeRevenue = 0;
-				for(List<Order> tmp : orders.values()){
-					for(Order tmpOr : tmp){
-						placed++;
-						switch(tmpOr.status()){
-							case CANCELLED:
-								cancelled++;
-								break;
-							case OPEN:
-								open++;
-								break;
-							default:								
-						}
-						foodRevenue += tmpOr.amount();
-						surchargeRevenue += tmpOr.surcharge();
-					}
-				}
-				reportTypes.get(rid).setEndDate(null);
-				reportTypes.get(rid).setStartDate(null);
-				reportTypes.get(rid).setOrdersPlaced(placed);
-				reportTypes.get(rid).setOrdersCancelled(cancelled);
-				reportTypes.get(rid).setOrdersOpen(open);
-				reportTypes.get(rid).setFoodRevenuen(foodRevenue);
-				reportTypes.get(rid).setSurchargeRevenue(surchargeRevenue);	
-				
-				return reportTypes.get(rid);
-			case 804:
-				reportTypes.put(804,new ReportType(804,"Orders delivery report"));
-				reportTypes.get(rid).setOrders(orders.get(Common.tomorrowAsString()));
-				double foodRevenueD = 0;
-				double surchargeRevenueD = 0;
-				int placedD = 0;
-				for(List<Order> tmp : orders.values()){
-					for(Order tmpOr : tmp){
-						if(tmpOr.status() == OrderStatus.DELIVERD){
-							placedD++;
-							foodRevenueD += tmpOr.amount();
-							surchargeRevenueD += tmpOr.surcharge();
-						}
+	public ReportType getReport801(){
+		reportTypes.remove(801);
+		reportTypes.put(801,new ReportType(801,"Orders to deliver today"));
+		reportTypes.get(801).setOrders(orders.get(Common.todayAsString()));
 
-					}
-				}
-				reportTypes.get(rid).setEndDate(null);
-				reportTypes.get(rid).setStartDate(null);
-				reportTypes.get(rid).setOrdersPlaced(placedD);
-				reportTypes.get(rid).setFoodRevenuen(foodRevenueD);
-				reportTypes.get(rid).setSurchargeRevenue(surchargeRevenueD);	
-				
-				return reportTypes.get(rid);
-		}
-		return null;
+		return reportTypes.get(801);
 	}
+	@Override
+	public ReportType getReport802(){
+		reportTypes.put(802,new ReportType(802,"Orders to deliver tomorrow"));
+		List<Order> ordersAux = new ArrayList<Order>();
+		if(orders.get(Common.tomorrowAsString()) != null){
+			for(Order tmp :orders.get(Common.tomorrowAsString()) ){
+				if(tmp.status()== OrderStatus.OPEN){
+					ordersAux.add(tmp);
+				}
+			}
+		}
+		reportTypes.get(802).setOrders(ordersAux);
+		return reportTypes.get(802);
+	}
+	@Override
+	public ReportType getReport803(){
+		reportTypes.put(803,new ReportType(803,"Revenue report"));
+		reportTypes.get(803).setOrders(orders.get(Common.tomorrowAsString()));
+		int placed = 0;
+		int cancelled = 0;
+		int open = 0;
+		double foodRevenue = 0;
+		double surchargeRevenue = 0;
+		for(List<Order> tmp : orders.values()){
+			for(Order tmpOr : tmp){
+				placed++;
+				switch(tmpOr.status()){
+					case CANCELLED:
+						cancelled++;
+						break;
+					case OPEN:
+						open++;
+						break;
+					default:								
+				}
+				foodRevenue += tmpOr.amount();
+				surchargeRevenue += tmpOr.surcharge();
+			}
+		}
+		reportTypes.get(803).setEndDate(null);
+		reportTypes.get(803).setStartDate(null);
+		reportTypes.get(803).setOrdersPlaced(placed);
+		reportTypes.get(803).setOrdersCancelled(cancelled);
+		reportTypes.get(803).setOrdersOpen(open);
+		reportTypes.get(803).setFoodRevenuen(foodRevenue);
+		reportTypes.get(803).setSurchargeRevenue(surchargeRevenue);	
+		
+		return reportTypes.get(803);
+	}
+	
+	@Override
+	public ReportType getReport804(){
+		reportTypes.put(804,new ReportType(804,"Orders delivery report"));
+		reportTypes.get(804).setOrders(orders.get(Common.tomorrowAsString()));
+		double foodRevenueD = 0;
+		double surchargeRevenueD = 0;
+		int placedD = 0;
+		for(List<Order> tmp : orders.values()){
+			for(Order tmpOr : tmp){
+				if(tmpOr.status() == OrderStatus.DELIVERD){
+					placedD++;
+					foodRevenueD += tmpOr.amount();
+					surchargeRevenueD += tmpOr.surcharge();
+				}
 
-
+			}
+		}
+		reportTypes.get(804).setEndDate(null);
+		reportTypes.get(804).setStartDate(null);
+		reportTypes.get(804).setOrdersPlaced(placedD);
+		reportTypes.get(804).setFoodRevenuen(foodRevenueD);
+		reportTypes.get(804).setSurchargeRevenue(surchargeRevenueD);	
+		
+		return reportTypes.get(804);
+	}
+	
 	@Override
 	public void addOrder(Order order) {
 		if(orders.containsKey(Common.DateString(order.deliveryDate()))){

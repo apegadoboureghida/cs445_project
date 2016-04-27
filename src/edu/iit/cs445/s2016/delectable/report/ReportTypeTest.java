@@ -88,7 +88,7 @@ public class ReportTypeTest {
 		List<Order> orders = new ArrayList<Order>();
 		orders.add(order);
 		
-		assertTrue(report.orders() == null);
+		assertTrue(report.orders().isEmpty());
 		report.setOrders(orders);
 		
 		assertTrue(report.orders().size() == 1);
