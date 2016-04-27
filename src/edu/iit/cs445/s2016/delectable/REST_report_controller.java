@@ -29,30 +29,49 @@ public class REST_report_controller extends REST_AbstractController{
     @Path("{rid}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getSpecificOrder(@PathParam("rid") int rid) {    
-        Gson gson = new GsonBuilder()
-        	     .create();
+    public Response getSpecificOrder(@PathParam("rid") int rid
+    		,@QueryParam("start_date") String startDate
+    		,@QueryParam("end_date") String endDate) {    
+        Gson gson = new GsonBuilder().create();
 
+        if((startDate == null && endDate != null) || (startDate != null && endDate == null)){
+        	Response.status(Response.Status.BAD_REQUEST).build();
+        }
+        
         ReportType report = null;
         
         switch (rid) {
 			case 801:
+		        if((startDate != null && endDate != null)){
+		        	Response.status(Response.Status.BAD_REQUEST).build();
+		        }
 				gson=new GsonBuilder()
 					.setExclusionStrategies(new OrderDeliverReportStrategy())
 					.create();
 				report = super.bri.getReportToday();
 				break;
 			case 802:
+		        if((startDate != null && endDate != null)){
+		        	Response.status(Response.Status.BAD_REQUEST).build();
+		        }
 				report = super.bri.getReport802();
 				gson=new GsonBuilder()
 						.setExclusionStrategies(new OrderDeliverReportStrategy())
 						.create();
 				break;
 			case 803:
+		        if((startDate != null && endDate != null)){
+					report = super.bri.getReport803(Common.StringToData(startDate),Common.StringToData(endDate));
+		        }else{
 				report = super.bri.getReport803();
+		        }
 				break;
 			case 804:
+		        if((startDate != null && endDate != null)){
+					report = super.bri.getReport804(Common.StringToData(startDate),Common.StringToData(endDate));
+		        }else{
 				report = super.bri.getReport804();
+		        }
 				break;
 			default:
 				break;

@@ -2,6 +2,7 @@ package edu.iit.cs445.s2016.delectable.report;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
@@ -98,6 +99,44 @@ public class ReportManager implements BoundaryReportInterface {
 	}
 	
 	@Override
+	public ReportType getReport803(Date startDate, Date endDate){
+		reportTypes.put(803,new ReportType(803,"Revenue report"));
+		int placed = 0;
+		int cancelled = 0;
+		int open = 0;
+		double foodRevenue = 0;
+		double surchargeRevenue = 0;
+		for(List<Order> tmp : orders.values()){
+			for(Order tmpOr : tmp){
+				if(endDate.after(tmpOr.deliveryDate()) && startDate.before(tmpOr.deliveryDate())){
+					placed++;
+					switch(tmpOr.status()){
+						case CANCELLED:
+							cancelled++;
+							break;
+						case OPEN:
+							open++;
+							break;
+						default:								
+					}
+					foodRevenue += tmpOr.amount();
+					surchargeRevenue += tmpOr.surcharge();
+				}
+			}
+		}
+		reportTypes.get(803).setEndDate(null);
+		reportTypes.get(803).setStartDate(null);
+		reportTypes.get(803).setOrdersPlaced(placed);
+		reportTypes.get(803).setOrdersCancelled(cancelled);
+		reportTypes.get(803).setOrdersOpen(open);
+		reportTypes.get(803).setFoodRevenuen(foodRevenue);
+		reportTypes.get(803).setSurchargeRevenue(surchargeRevenue);	
+		reportTypes.get(803).setOrders(null);
+		
+		return reportTypes.get(803);
+	}
+	
+	@Override
 	public ReportType getReport804(){
 		reportTypes.put(804,new ReportType(804,"Orders delivery report"));
 		double foodRevenueD = 0;
@@ -106,6 +145,31 @@ public class ReportManager implements BoundaryReportInterface {
 		for(List<Order> tmp : orders.values()){
 			for(Order tmpOr : tmp){
 				if(tmpOr.status() == OrderStatus.DELIVERD){
+					placedD++;
+					foodRevenueD += tmpOr.amount();
+					surchargeRevenueD += tmpOr.surcharge();
+				}
+
+			}
+		}
+		reportTypes.get(804).setEndDate(null);
+		reportTypes.get(804).setStartDate(null);
+		reportTypes.get(804).setOrdersPlaced(placedD);
+		reportTypes.get(804).setFoodRevenuen(foodRevenueD);
+		reportTypes.get(804).setSurchargeRevenue(surchargeRevenueD);	
+		reportTypes.get(803).setOrders(null);
+		return reportTypes.get(804);
+	}
+	
+	@Override
+	public ReportType getReport804(Date startDate, Date endDate){
+		reportTypes.put(804,new ReportType(804,"Orders delivery report"));
+		double foodRevenueD = 0;
+		double surchargeRevenueD = 0;
+		int placedD = 0;
+		for(List<Order> tmp : orders.values()){
+			for(Order tmpOr : tmp){
+				if(tmpOr.status() == OrderStatus.DELIVERD && endDate.after(tmpOr.deliveryDate()) && startDate.before(tmpOr.deliveryDate())){
 					placedD++;
 					foodRevenueD += tmpOr.amount();
 					surchargeRevenueD += tmpOr.surcharge();
